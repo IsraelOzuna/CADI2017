@@ -34,7 +34,6 @@ public class ReservarActividad extends javax.swing.JFrame {
         fechaReservacion = new javax.swing.JLabel();
         horarios = new javax.swing.JLabel();
         actividad = new javax.swing.JLabel();
-        comboFechas = new javax.swing.JComboBox<>();
         comboHoras = new javax.swing.JComboBox<>();
         comboActividades = new javax.swing.JComboBox<>();
         botonCancelar = new javax.swing.JButton();
@@ -53,6 +52,7 @@ public class ReservarActividad extends javax.swing.JFrame {
         campoCaracterConfirmado = new javax.swing.JTextField();
         campoTipoConfirmado = new javax.swing.JTextField();
         campoFechaConfirmada = new javax.swing.JTextField();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -77,14 +77,6 @@ public class ReservarActividad extends javax.swing.JFrame {
         actividad.setForeground(new java.awt.Color(255, 255, 255));
         actividad.setText("Actividad para la reservación:");
         jPanel1.add(actividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
-
-        comboFechas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comboFechas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboFechasActionPerformed(evt);
-            }
-        });
-        jPanel1.add(comboFechas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 190, -1));
 
         comboHoras.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(comboHoras, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 190, -1));
@@ -209,15 +201,12 @@ public class ReservarActividad extends javax.swing.JFrame {
             }
         });
         jPanel1.add(campoFechaConfirmada, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 160, -1));
+        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 190, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void comboFechasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFechasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboFechasActionPerformed
 
     private void botonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConfirmarActionPerformed
         // TODO add your handling code here:
@@ -273,7 +262,6 @@ public class ReservarActividad extends javax.swing.JFrame {
     private javax.swing.JTextField campoSalaConfirmada;
     private javax.swing.JTextField campoTipoConfirmado;
     private javax.swing.JComboBox<String> comboActividades;
-    private javax.swing.JComboBox<String> comboFechas;
     private javax.swing.JComboBox<String> comboHoras;
     private javax.swing.JLabel confirmacionActividad;
     private javax.swing.JLabel confirmacionCaracter;
@@ -284,6 +272,7 @@ public class ReservarActividad extends javax.swing.JFrame {
     private javax.swing.JLabel detallesReservacion;
     private javax.swing.JLabel fechaReservacion;
     private javax.swing.JLabel horarios;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel panelConfirmar;
     // End of variables declaration//GEN-END:variables
