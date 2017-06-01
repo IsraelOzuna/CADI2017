@@ -29,11 +29,11 @@ public class IniciarSesion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        PanelIniciarSesion = new javax.swing.JPanel();
-        Usuario = new javax.swing.JLabel();
-        Contraseña = new javax.swing.JLabel();
+        panelIniciarSesion = new javax.swing.JPanel();
+        usuario = new javax.swing.JLabel();
+        contraseña = new javax.swing.JLabel();
         separadorContrasena = new javax.swing.JSeparator();
-        SeparadorUsuario = new javax.swing.JSeparator();
+        separadorUsuario = new javax.swing.JSeparator();
         campoContrasena = new javax.swing.JPasswordField();
         campoUsuario = new javax.swing.JTextField();
         botonCancelar = new javax.swing.JButton();
@@ -41,41 +41,40 @@ public class IniciarSesion extends javax.swing.JFrame {
         botonIngresar = new javax.swing.JButton();
         panelIngresar = new javax.swing.JPanel();
         separadorCancelar = new javax.swing.JSeparator();
-        PanelPresentacion = new javax.swing.JPanel();
-        EscudoUV = new javax.swing.JLabel();
-        Titulo = new javax.swing.JLabel();
-        Titulo2 = new javax.swing.JLabel();
+        panelPresentacion = new javax.swing.JPanel();
+        escudoUV = new javax.swing.JLabel();
+        titulo = new javax.swing.JLabel();
+        titulo2 = new javax.swing.JLabel();
         UV = new javax.swing.JLabel();
-        Separador = new javax.swing.JSeparator();
+        separador = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(720, 470));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        PanelIniciarSesion.setBackground(new java.awt.Color(0, 102, 153));
-        PanelIniciarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+        panelIniciarSesion.setBackground(new java.awt.Color(0, 102, 153));
+        panelIniciarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                PanelIniciarSesionMouseClicked(evt);
+                panelIniciarSesionMouseClicked(evt);
             }
         });
-        PanelIniciarSesion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelIniciarSesion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Usuario.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
-        Usuario.setForeground(new java.awt.Color(255, 255, 255));
-        Usuario.setText("Usuario");
-        PanelIniciarSesion.add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
+        usuario.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
+        usuario.setForeground(new java.awt.Color(255, 255, 255));
+        usuario.setText("Usuario");
+        panelIniciarSesion.add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
 
-        Contraseña.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
-        Contraseña.setForeground(new java.awt.Color(255, 255, 255));
-        Contraseña.setText("Contraseña");
-        PanelIniciarSesion.add(Contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
+        contraseña.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
+        contraseña.setForeground(new java.awt.Color(255, 255, 255));
+        contraseña.setText("Contraseña");
+        panelIniciarSesion.add(contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
 
         separadorContrasena.setForeground(new java.awt.Color(255, 255, 255));
-        PanelIniciarSesion.add(separadorContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 270, 10));
+        panelIniciarSesion.add(separadorContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 270, 10));
 
-        SeparadorUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        PanelIniciarSesion.add(SeparadorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 270, 10));
+        separadorUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        panelIniciarSesion.add(separadorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 270, 10));
 
         campoContrasena.setBackground(new java.awt.Color(0, 102, 153));
         campoContrasena.setForeground(new java.awt.Color(255, 255, 255));
@@ -97,7 +96,7 @@ public class IniciarSesion extends javax.swing.JFrame {
                 campoContrasenaActionPerformed(evt);
             }
         });
-        PanelIniciarSesion.add(campoContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 270, -1));
+        panelIniciarSesion.add(campoContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 270, -1));
 
         campoUsuario.setBackground(new java.awt.Color(0, 102, 153));
         campoUsuario.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 14)); // NOI18N
@@ -120,7 +119,7 @@ public class IniciarSesion extends javax.swing.JFrame {
                 campoUsuarioActionPerformed(evt);
             }
         });
-        PanelIniciarSesion.add(campoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 270, -1));
+        panelIniciarSesion.add(campoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 270, -1));
 
         botonCancelar.setBackground(new java.awt.Color(255, 255, 255));
         botonCancelar.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 12)); // NOI18N
@@ -136,13 +135,13 @@ public class IniciarSesion extends javax.swing.JFrame {
                 botonCancelarActionPerformed(evt);
             }
         });
-        PanelIniciarSesion.add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, 110, 40));
+        panelIniciarSesion.add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, 110, 40));
 
         campoPresentacion.setBackground(new java.awt.Color(255, 255, 255));
         campoPresentacion.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         campoPresentacion.setForeground(new java.awt.Color(255, 255, 255));
         campoPresentacion.setText("Inicia Sesión en el portal");
-        PanelIniciarSesion.add(campoPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 210, -1));
+        panelIniciarSesion.add(campoPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 210, -1));
 
         botonIngresar.setBackground(new java.awt.Color(255, 255, 255));
         botonIngresar.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 12)); // NOI18N
@@ -157,7 +156,7 @@ public class IniciarSesion extends javax.swing.JFrame {
                 botonIngresarActionPerformed(evt);
             }
         });
-        PanelIniciarSesion.add(botonIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 120, 40));
+        panelIniciarSesion.add(botonIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 120, 40));
 
         panelIngresar.setBackground(new java.awt.Color(1, 80, 160));
 
@@ -172,39 +171,39 @@ public class IniciarSesion extends javax.swing.JFrame {
             .addGap(0, 40, Short.MAX_VALUE)
         );
 
-        PanelIniciarSesion.add(panelIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 120, 40));
+        panelIniciarSesion.add(panelIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 120, 40));
 
         separadorCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        PanelIniciarSesion.add(separadorCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 400, 80, 10));
+        panelIniciarSesion.add(separadorCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 400, 80, 10));
 
-        getContentPane().add(PanelIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 350, 470));
+        getContentPane().add(panelIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 350, 470));
 
-        PanelPresentacion.setBackground(new java.awt.Color(12, 114, 45));
-        PanelPresentacion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelPresentacion.setBackground(new java.awt.Color(12, 114, 45));
+        panelPresentacion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        EscudoUV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Flor1024x768SinFondo.png"))); // NOI18N
-        PanelPresentacion.add(EscudoUV, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 120, 350, 310));
+        escudoUV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Flor1024x768SinFondo.png"))); // NOI18N
+        panelPresentacion.add(escudoUV, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 120, 350, 310));
 
-        Titulo.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 36)); // NOI18N
-        Titulo.setForeground(new java.awt.Color(255, 255, 255));
-        Titulo.setText("Cento de Autoacceso");
-        PanelPresentacion.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 350, 40));
+        titulo.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 36)); // NOI18N
+        titulo.setForeground(new java.awt.Color(255, 255, 255));
+        titulo.setText("Cento de Autoacceso");
+        panelPresentacion.add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 350, 40));
 
-        Titulo2.setBackground(new java.awt.Color(255, 255, 255));
-        Titulo2.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 36)); // NOI18N
-        Titulo2.setForeground(new java.awt.Color(255, 255, 255));
-        Titulo2.setText("USBI Xalapa");
-        PanelPresentacion.add(Titulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, -1, -1));
+        titulo2.setBackground(new java.awt.Color(255, 255, 255));
+        titulo2.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 36)); // NOI18N
+        titulo2.setForeground(new java.awt.Color(255, 255, 255));
+        titulo2.setText("USBI Xalapa");
+        panelPresentacion.add(titulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, -1, -1));
 
         UV.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
         UV.setForeground(new java.awt.Color(255, 255, 255));
         UV.setText("U n i v e r s i d a d  V e r a c r u z a n a");
-        PanelPresentacion.add(UV, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 250, -1));
+        panelPresentacion.add(UV, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 250, -1));
 
-        Separador.setForeground(new java.awt.Color(255, 255, 255));
-        PanelPresentacion.add(Separador, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 300, 10));
+        separador.setForeground(new java.awt.Color(255, 255, 255));
+        panelPresentacion.add(separador, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 300, 10));
 
-        getContentPane().add(PanelPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 470));
+        getContentPane().add(panelPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -241,9 +240,9 @@ public class IniciarSesion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonIngresarActionPerformed
 
-    private void PanelIniciarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelIniciarSesionMouseClicked
+    private void panelIniciarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelIniciarSesionMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_PanelIniciarSesionMouseClicked
+    }//GEN-LAST:event_panelIniciarSesionMouseClicked
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         // TODO add your handling code here:
@@ -287,23 +286,23 @@ public class IniciarSesion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Contraseña;
-    private javax.swing.JLabel EscudoUV;
-    private javax.swing.JPanel PanelIniciarSesion;
-    private javax.swing.JPanel PanelPresentacion;
-    private javax.swing.JSeparator Separador;
-    private javax.swing.JSeparator SeparadorUsuario;
-    private javax.swing.JLabel Titulo;
-    private javax.swing.JLabel Titulo2;
     private javax.swing.JLabel UV;
-    private javax.swing.JLabel Usuario;
     private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonIngresar;
     private javax.swing.JPasswordField campoContrasena;
     private javax.swing.JLabel campoPresentacion;
     private javax.swing.JTextField campoUsuario;
+    private javax.swing.JLabel contraseña;
+    private javax.swing.JLabel escudoUV;
     private javax.swing.JPanel panelIngresar;
+    private javax.swing.JPanel panelIniciarSesion;
+    private javax.swing.JPanel panelPresentacion;
+    private javax.swing.JSeparator separador;
     private javax.swing.JSeparator separadorCancelar;
     private javax.swing.JSeparator separadorContrasena;
+    private javax.swing.JSeparator separadorUsuario;
+    private javax.swing.JLabel titulo;
+    private javax.swing.JLabel titulo2;
+    private javax.swing.JLabel usuario;
     // End of variables declaration//GEN-END:variables
 }
