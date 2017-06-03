@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Ozuna
@@ -78,7 +80,6 @@ public class IniciarSesion extends javax.swing.JFrame {
 
         campoContrasena.setBackground(new java.awt.Color(0, 102, 153));
         campoContrasena.setForeground(new java.awt.Color(255, 255, 255));
-        campoContrasena.setText("jPasswordField1");
         campoContrasena.setBorder(null);
         campoContrasena.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         campoContrasena.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -101,7 +102,6 @@ public class IniciarSesion extends javax.swing.JFrame {
         campoUsuario.setBackground(new java.awt.Color(0, 102, 153));
         campoUsuario.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 14)); // NOI18N
         campoUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        campoUsuario.setText("Ingresa tu usuario");
         campoUsuario.setBorder(null);
         campoUsuario.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         campoUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -210,34 +210,32 @@ public class IniciarSesion extends javax.swing.JFrame {
 
     private void campoContrasenaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoContrasenaFocusGained
         // TODO add your handling code here:
-        campoContrasena.setText("");
     }//GEN-LAST:event_campoContrasenaFocusGained
 
     private void campoContrasenaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoContrasenaMouseClicked
         // TODO add your handling code here:
-        campoContrasena.setText("");
     }//GEN-LAST:event_campoContrasenaMouseClicked
 
     private void campoContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoContrasenaActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_campoContrasenaActionPerformed
 
     private void campoUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoUsuarioFocusGained
         // TODO add your handling code here:
-        campoUsuario.setText("");
     }//GEN-LAST:event_campoUsuarioFocusGained
 
     private void campoUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoUsuarioMouseClicked
         // TODO add your handling code here:
-        campoUsuario.setText("");
     }//GEN-LAST:event_campoUsuarioMouseClicked
 
     private void campoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoUsuarioActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_campoUsuarioActionPerformed
 
     private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
-        // TODO add your handling code here:
+        if(campoContrasena.getText().isEmpty() || campoUsuario.getText().isEmpty())
+            JOptionPane.showMessageDialog(null, "Algún campo está vacio");
+       
     }//GEN-LAST:event_botonIngresarActionPerformed
 
     private void panelIniciarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelIniciarSesionMouseClicked
