@@ -6,6 +6,7 @@
 package GUI;
 
 import GUI.UsuarioAutonomo.MenuPrincipalUsuarioAutonomo;
+import GUIAsesor.MenuPrincipalAsesor;
 import Negocios.UsuarioDAO;
 import Recursos.MensajeBandera;
 import javax.swing.JOptionPane;
@@ -256,7 +257,8 @@ public class IniciarSesion extends javax.swing.JFrame {
                     break;
                     
                 case USUARIO_ASESOR:
-                    
+                    new MenuPrincipalAsesor(campoUsuario.getText());
+                    dispose();
                     break;
                     
                 case USUARIO_USUARIO_AUTONOMO:

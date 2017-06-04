@@ -8,7 +8,7 @@ import java.sql.Time;
  * @author Ozuna
  */
 public class Reservacion {
-    private int idReservacion;
+    private String idReservacion;
     private boolean asistencia;
     private float calificacion;
     private String estado;
@@ -19,17 +19,24 @@ public class Reservacion {
     private Time horaFin;
     private Actividad actividad;
     private UsuarioAutonomo alumno;
-
+    private int cupo;
+    private Asesor asesorAsignado;
+    private String sala;
+    
     public Reservacion() {
+        actividad = new Actividad();
+        asesorAsignado = new Asesor();
     }
 
-    public int getIdReservacion() {
+    public String getIdReservacion() {
         return idReservacion;
     }
 
-    public void setIdReservacion(int idReservacion) {
+    public void setIdReservacion(String idReservacion) {
         this.idReservacion = idReservacion;
     }
+
+    
 
     public boolean isAsistencia() {
         return asistencia;
@@ -110,5 +117,31 @@ public class Reservacion {
     public void setAlumno(UsuarioAutonomo alumno) {
         this.alumno = alumno;
     }
+
+    public int getCupo() {
+        return cupo;
+    }
+
+    public void setCupo(int cupo) {
+        this.cupo = cupo;
+    }
+
+    public Asesor getAsesorAsignado() {
+        return asesorAsignado;
+    }
+
+    public void setAsesorAsignado(Asesor asesorAsignado) {
+        this.asesorAsignado = asesorAsignado;
+    }
+
+    public String getSala() {
+        return sala;
+    }
+
+    public void setSala(String sala) {
+        this.sala = sala;
+    }
+    
+    
     
 }

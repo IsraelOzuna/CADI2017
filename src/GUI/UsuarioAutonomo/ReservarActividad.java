@@ -23,6 +23,8 @@ public class ReservarActividad extends javax.swing.JFrame {
         setVisible(true);
         setLocationRelativeTo(null);
         
+      
+        
     }
 
     /**

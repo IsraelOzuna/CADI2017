@@ -4,7 +4,7 @@ import Recursos.MensajeBandera;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
+
 
 /**
  *
@@ -36,12 +36,13 @@ public class Conexion {
         
         try{
             
-            conexionBD = DriverManager.getConnection("jdbc:mysql://127.0.0.1/cadi?user=SAIUser&password=sai2017cadi");
+            conexionBD = DriverManager.getConnection("jdbc:mysql://192.168.1.103/cadi?user=SAIUser&password=sai2017cadi");
             
             mensaje = MensajeBandera.CONEXION_EXITOSA;
             
         }catch(SQLException conexionExcep){
-            
+            System.out.println(conexionExcep.getMessage());
+            conexionExcep.printStackTrace();
             mensaje = MensajeBandera.ERROR_CONEXION;
             
         }

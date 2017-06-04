@@ -5,6 +5,7 @@
  */
 package GUIAsesor;
 
+import GUI.IniciarSesion;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -53,6 +54,7 @@ public class MenuPrincipalAsesor extends javax.swing.JFrame {
         panelCalendario = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        botonCerrarSesion = new javax.swing.JButton();
         fondoMenu = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -139,6 +141,21 @@ public class MenuPrincipalAsesor extends javax.swing.JFrame {
         panelCalendario.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 150, 60));
 
         getContentPane().add(panelCalendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 890, 80));
+
+        botonCerrarSesion.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
+        botonCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
+        botonCerrarSesion.setText("Cerrar Sesión");
+        botonCerrarSesion.setBorderPainted(false);
+        botonCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonCerrarSesion.setOpaque(false);
+        botonCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCerrarSesionActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botonCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 10, -1, -1));
+
+        fondoMenu.setText("c");
         getContentPane().add(fondoMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 930, 570));
 
         pack();
@@ -150,6 +167,11 @@ public class MenuPrincipalAsesor extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_panelMisSeccionesMouseClicked
 
+    private void botonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesionActionPerformed
+        IniciarSesion inicio = new IniciarSesion();
+        dispose();
+    }//GEN-LAST:event_botonCerrarSesionActionPerformed
+
     public ImageIcon colocarImagenesEnEtiquetas(String urlImagen, JLabel etiqueta){
         ImageIcon imagen = new ImageIcon(getClass().getResource(urlImagen));
         ImageIcon icono = new ImageIcon(imagen.getImage().getScaledInstance(etiqueta.getWidth(),etiqueta.getHeight(),Image.SCALE_DEFAULT));
@@ -159,6 +181,7 @@ public class MenuPrincipalAsesor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel apellidosAsesor;
     private javax.swing.JLabel avisos;
+    private javax.swing.JButton botonCerrarSesion;
     private javax.swing.JLabel correoAsesor;
     private javax.swing.JLabel descripcionMisSecciones;
     private javax.swing.JLabel descripcionMisSecciones2;

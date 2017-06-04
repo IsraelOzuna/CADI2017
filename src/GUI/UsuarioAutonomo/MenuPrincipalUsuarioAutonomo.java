@@ -22,6 +22,7 @@ public class MenuPrincipalUsuarioAutonomo extends javax.swing.JFrame {
         this.usuario = usuario;      
         UsuarioAutonomoDAO alumno = new UsuarioAutonomoDAO();
         this.alumno = alumno.obtenerUsuario(usuario);    
+        nombreUsuarioAutonomo.setText(this.alumno.getNombre()+" "+this.alumno.getApellidos());
         
     }
     public MenuPrincipalUsuarioAutonomo(UsuarioAutonomo usuario){
@@ -30,6 +31,7 @@ public class MenuPrincipalUsuarioAutonomo extends javax.swing.JFrame {
         setVisible(true);
         setLocationRelativeTo(null);
         alumno = usuario;
+        nombreUsuarioAutonomo.setText(this.alumno.getNombre()+" "+this.alumno.getApellidos());
     }
 
     /**
