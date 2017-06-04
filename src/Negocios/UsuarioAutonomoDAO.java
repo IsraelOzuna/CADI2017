@@ -3,6 +3,7 @@ package Negocios;
 import Datos.Conexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -11,17 +12,34 @@ import java.sql.ResultSet;
 public class UsuarioAutonomoDAO implements IUsuarioAutonomoDAO {
 
     @Override
-    public UsuarioAutonomo obtenerUsuario(String usuario) {
+    public String obtenerUsuario(String usuario) {
         
         Conexion conexion = new Conexion();
-        UsuarioAutonomo usuarioAutonomo = new UsuarioAutonomo();
-        PreparedStatement sentencia;
-        ResultSet resultado;
-        String consultaSQL;
+        PreparedStatement sentencia = null;
+        ResultSet resultado = null;
+        String consultaSQL = null;
+        String nombreUsuarioAutonomo = null;
         
-                
+        consultaSQL = "SELECT nombreUsuarioAutonomo, apellidosUsuarioAutonomo FROM usuarioAutonomo WHERE usuario =?";
         
-        return usuarioAutonomo;
+        try{
+            
+            sentencia = conexion.obtenerConexion().prepareStatement(consultaSQL);
+            
+            sentencia.setString(1, usuario);
+            
+            resultado = sentencia.executeQuery();
+            
+            if(resultado.next())
+                nombreUsuarioAutonomo = resultado.getString(1)+ " "+ resultado.getString(2);
+            
+        }catch(SQLException ex){
+            
+        }finally{
+            conexion.cerrarConexion();
+        }
+        
+        return nombreUsuarioAutonomo;
         
     }
     

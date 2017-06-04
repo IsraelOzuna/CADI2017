@@ -1,5 +1,7 @@
 package GUI.UsuarioAutonomo;
 
+import Negocios.UsuarioAutonomoDAO;
+
 /**
  *
  * @author Ozuna
@@ -9,11 +11,14 @@ public class MenuPrincipalUsuarioAutonomo extends javax.swing.JFrame {
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipalUsuarioAutonomo(String usuario) {
-        this.usuario = usuario;
+    public MenuPrincipalUsuarioAutonomo(String usuario) {  
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
+        
+        this.usuario = usuario;      
+        UsuarioAutonomoDAO alumno = new UsuarioAutonomoDAO();
+        nombreUsuarioAutonomo.setText(alumno.obtenerUsuario(usuario));          
     }
 
     /**
@@ -34,7 +39,7 @@ public class MenuPrincipalUsuarioAutonomo extends javax.swing.JFrame {
         botonConsultarCalendarioActividades = new javax.swing.JButton();
         botonVerAvisos = new javax.swing.JButton();
         botonCerrarSesion = new javax.swing.JButton();
-        nombreUsuarioAutónomo = new javax.swing.JLabel();
+        nombreUsuarioAutonomo = new javax.swing.JLabel();
         panelAvisos = new javax.swing.JPanel();
         panleCalendarioActividades = new javax.swing.JPanel();
         panelMisAvances = new javax.swing.JPanel();
@@ -125,11 +130,10 @@ public class MenuPrincipalUsuarioAutonomo extends javax.swing.JFrame {
         botonCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelMenu.add(botonCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, -1, -1));
 
-        nombreUsuarioAutónomo.setBackground(new java.awt.Color(255, 255, 255));
-        nombreUsuarioAutónomo.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
-        nombreUsuarioAutónomo.setForeground(new java.awt.Color(255, 255, 255));
-        nombreUsuarioAutónomo.setText("Nombre usuario");
-        panelMenu.add(nombreUsuarioAutónomo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 230, 30));
+        nombreUsuarioAutonomo.setBackground(new java.awt.Color(255, 255, 255));
+        nombreUsuarioAutonomo.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
+        nombreUsuarioAutonomo.setForeground(new java.awt.Color(255, 255, 255));
+        panelMenu.add(nombreUsuarioAutonomo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 230, 30));
 
         panelAvisos.setBackground(new java.awt.Color(18, 209, 82));
 
@@ -220,7 +224,7 @@ public class MenuPrincipalUsuarioAutonomo extends javax.swing.JFrame {
     private javax.swing.JLabel descripcionMisAvances;
     private javax.swing.JLabel descripcionReservarActividad;
     private javax.swing.JScrollBar jScrollBar1;
-    private javax.swing.JLabel nombreUsuarioAutónomo;
+    private javax.swing.JLabel nombreUsuarioAutonomo;
     private javax.swing.JPanel panelAvisos;
     private javax.swing.JPanel panelMenu;
     private javax.swing.JPanel panelMisAvances;

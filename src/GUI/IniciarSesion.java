@@ -260,15 +260,17 @@ public class IniciarSesion extends javax.swing.JFrame {
                     break;
                     
                 case USUARIO_USUARIO_AUTONOMO:
-                    MenuPrincipalUsuarioAutonomo menu = new MenuPrincipalUsuarioAutonomo(campoUsuario.getText());
+                    new MenuPrincipalUsuarioAutonomo(campoUsuario.getText());
+                    dispose();
                     break;
                     
                 case USUARIO_INVALIDO:
                     JOptionPane.showMessageDialog(null, "Datos incorrectos");
                     break;
             }
+            campoUsuario.setText("");
+            campoContrasena.setText("");
          }
-        
     }//GEN-LAST:event_botonIngresarActionPerformed
 
     private void panelIniciarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelIniciarSesionMouseClicked
