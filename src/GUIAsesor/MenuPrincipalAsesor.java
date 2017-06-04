@@ -6,25 +6,26 @@
 package GUIAsesor;
 
 import java.awt.Image;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  *
  * @author Cristhian Ubaldo Promotor
  */
 public class MenuPrincipalAsesor extends javax.swing.JFrame {
-
+    private String usuario;
     /**
      * Creates new form MenuPrincipalAsesor
      */
-    public MenuPrincipalAsesor() {
-        
+    public MenuPrincipalAsesor(String usuario) {
+        this.usuario = usuario;
         initComponents();
+        setLocationRelativeTo(null);
+        setVisible(true);
         
-        ImageIcon imagen = new ImageIcon(getClass().getResource("/Recursos/Flor1024x768SinFondo.png"));
-        ImageIcon icono = new ImageIcon(imagen.getImage().getScaledInstance(logoUV.getWidth(),logoUV.getHeight(),Image.SCALE_DEFAULT));
-        logoUV.setIcon(icono);
+        logoUV.setIcon(colocarImagenesEnEtiquetas("/Recursos/Flor1024x768SinFondo.png", logoUV));
+        fondoMenu.setIcon(colocarImagenesEnEtiquetas("/Recursos/fondo-menu-pantalla.jpg", fondoMenu));
     }
 
     /**
@@ -36,81 +37,142 @@ public class MenuPrincipalAsesor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelFondo = new javax.swing.JPanel();
-        panelBotones = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         logoUV = new javax.swing.JLabel();
+        nombreAsesor = new javax.swing.JLabel();
+        apellidosAsesor = new javax.swing.JLabel();
+        correoAsesor = new javax.swing.JLabel();
+        mensajeBienvenida = new javax.swing.JLabel();
+        panelMisSecciones = new javax.swing.JPanel();
+        descripcionMisSecciones = new javax.swing.JLabel();
+        descripcionMisSecciones2 = new javax.swing.JLabel();
+        parteBlancaMisSecciones = new javax.swing.JLabel();
+        misSecciones = new javax.swing.JLabel();
+        panelAvisos = new javax.swing.JPanel();
+        parteBlancaAvisos = new javax.swing.JLabel();
+        avisos = new javax.swing.JLabel();
+        panelCalendario = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        fondoMenu = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menú principal");
         setBackground(new java.awt.Color(0, 102, 153));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelFondo.setBackground(new java.awt.Color(0, 102, 153));
-        panelFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        logoUV.setBackground(new java.awt.Color(204, 204, 255));
+        getContentPane().add(logoUV, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 170, 120));
 
-        panelBotones.setBackground(new java.awt.Color(12, 114, 45));
-        panelBotones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        nombreAsesor.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
+        nombreAsesor.setForeground(new java.awt.Color(255, 255, 255));
+        nombreAsesor.setText("Nombre:");
+        getContentPane().add(nombreAsesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(0, 153, 204));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("jButton1");
-        panelBotones.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 44, 174, 79));
+        apellidosAsesor.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
+        apellidosAsesor.setForeground(new java.awt.Color(255, 255, 255));
+        apellidosAsesor.setText("Apellidos:");
+        getContentPane().add(apellidosAsesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, -1, -1));
 
-        jButton2.setBackground(new java.awt.Color(0, 153, 204));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("jButton2");
-        panelBotones.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 47, 170, 73));
+        correoAsesor.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
+        correoAsesor.setForeground(new java.awt.Color(255, 255, 255));
+        correoAsesor.setText("Correo:");
+        getContentPane().add(correoAsesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, -1, -1));
 
-        panelFondo.add(panelBotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 850, 530));
-        panelFondo.add(logoUV, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 170, 120));
+        mensajeBienvenida.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 36)); // NOI18N
+        mensajeBienvenida.setForeground(new java.awt.Color(255, 255, 255));
+        mensajeBienvenida.setText("Bienvenido");
+        getContentPane().add(mensajeBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, 220, 70));
 
-        getContentPane().add(panelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 720));
+        panelMisSecciones.setBackground(new java.awt.Color(1, 80, 160));
+        panelMisSecciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelMisSecciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelMisSeccionesMouseClicked(evt);
+            }
+        });
+        panelMisSecciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        descripcionMisSecciones.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 12)); // NOI18N
+        descripcionMisSecciones.setText("Podrá supervisar los sus grupos a los que imparte clase ademas de ver las actividades y evidencias entregadas por el ");
+        panelMisSecciones.add(descripcionMisSecciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, -1, -1));
+
+        descripcionMisSecciones2.setFont(descripcionMisSecciones.getFont());
+        descripcionMisSecciones2.setText("estudiante,tambien podrá registrar éstas y además de que en periodos finales podrá registrar un calificación final");
+        panelMisSecciones.add(descripcionMisSecciones2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, -1, -1));
+
+        parteBlancaMisSecciones.setBackground(new java.awt.Color(255, 255, 255));
+        parteBlancaMisSecciones.setOpaque(true);
+        panelMisSecciones.add(parteBlancaMisSecciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 710, 60));
+
+        misSecciones.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 24)); // NOI18N
+        misSecciones.setForeground(new java.awt.Color(255, 255, 255));
+        misSecciones.setText("Mis Secciones");
+        panelMisSecciones.add(misSecciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        getContentPane().add(panelMisSecciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 890, 80));
+
+        panelAvisos.setBackground(new java.awt.Color(0, 153, 153));
+        panelAvisos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        parteBlancaAvisos.setBackground(new java.awt.Color(255, 255, 255));
+        parteBlancaAvisos.setOpaque(true);
+        panelAvisos.add(parteBlancaAvisos, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 710, 60));
+
+        avisos.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 24)); // NOI18N
+        avisos.setForeground(new java.awt.Color(255, 255, 255));
+        avisos.setText("Avisos");
+        panelAvisos.add(avisos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+
+        getContentPane().add(panelAvisos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 890, 80));
+
+        panelCalendario.setBackground(new java.awt.Color(0, 153, 51));
+        panelCalendario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel9.setOpaque(true);
+        panelCalendario.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 710, 60));
+
+        jLabel10.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 24)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Calendario ");
+        panelCalendario.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 150, 60));
+
+        getContentPane().add(panelCalendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 890, 80));
+        getContentPane().add(fondoMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 930, 570));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipalAsesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipalAsesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipalAsesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipalAsesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void panelMisSeccionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelMisSeccionesMouseClicked
+        // TODO add your handling code here:
+        ConsultarMisGrupos ventana = new ConsultarMisGrupos(usuario);
+        dispose();
+    }//GEN-LAST:event_panelMisSeccionesMouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuPrincipalAsesor().setVisible(true);
-            }
-        });
+    public ImageIcon colocarImagenesEnEtiquetas(String urlImagen, JLabel etiqueta){
+        ImageIcon imagen = new ImageIcon(getClass().getResource(urlImagen));
+        ImageIcon icono = new ImageIcon(imagen.getImage().getScaledInstance(etiqueta.getWidth(),etiqueta.getHeight(),Image.SCALE_DEFAULT));
+        return icono;
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel apellidosAsesor;
+    private javax.swing.JLabel avisos;
+    private javax.swing.JLabel correoAsesor;
+    private javax.swing.JLabel descripcionMisSecciones;
+    private javax.swing.JLabel descripcionMisSecciones2;
+    private javax.swing.JLabel fondoMenu;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel logoUV;
-    private javax.swing.JPanel panelBotones;
-    private javax.swing.JPanel panelFondo;
+    private javax.swing.JLabel mensajeBienvenida;
+    private javax.swing.JLabel misSecciones;
+    private javax.swing.JLabel nombreAsesor;
+    private javax.swing.JPanel panelAvisos;
+    private javax.swing.JPanel panelCalendario;
+    private javax.swing.JPanel panelMisSecciones;
+    private javax.swing.JLabel parteBlancaAvisos;
+    private javax.swing.JLabel parteBlancaMisSecciones;
     // End of variables declaration//GEN-END:variables
 }
