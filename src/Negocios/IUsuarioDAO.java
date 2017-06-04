@@ -1,5 +1,6 @@
 package Negocios;
 
+import Recursos.MensajeBandera;
 import java.sql.SQLException;
 
 /**
@@ -7,6 +8,5 @@ import java.sql.SQLException;
  * @author Ozuna
  */
 public interface IUsuarioDAO {
-    //public boolean iniciarSesion(String usuario, char [] contrasena) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException;
-    public void cerrarSesion();
+    public MensajeBandera iniciarSesion(String usuario, String contrasena) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException;
 }

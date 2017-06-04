@@ -5,6 +5,9 @@
  */
 package GUI;
 
+import GUI.UsuarioAutonomo.MenuPrincipalUsuarioAutonomo;
+import Negocios.UsuarioDAO;
+import Recursos.MensajeBandera;
 import javax.swing.JOptionPane;
 
 /**
@@ -233,9 +236,39 @@ public class IniciarSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_campoUsuarioActionPerformed
 
     private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
+        MensajeBandera mensaje = null;
+        UsuarioDAO usuario = new UsuarioDAO();
+        
         if(campoContrasena.getText().isEmpty() || campoUsuario.getText().isEmpty())
             JOptionPane.showMessageDialog(null, "Algún campo está vacio");
-       
+        else{
+            switch(usuario.iniciarSesion(campoUsuario.getText(), campoContrasena.getText())){
+                case ERROR_CONEXION:
+                    JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos");
+                break;
+                
+                case USUARIO_COORDINADOR:
+                    
+                    break;
+                    
+                case USUARIO_RECEPCIONISTA:
+                    
+                    break;
+                    
+                case USUARIO_ASESOR:
+                    
+                    break;
+                    
+                case USUARIO_USUARIO_AUTONOMO:
+                    MenuPrincipalUsuarioAutonomo menu = new MenuPrincipalUsuarioAutonomo(campoUsuario.getText());
+                    break;
+                    
+                case USUARIO_INVALIDO:
+                    JOptionPane.showMessageDialog(null, "Datos incorrectos");
+                    break;
+            }
+         }
+        
     }//GEN-LAST:event_botonIngresarActionPerformed
 
     private void panelIniciarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelIniciarSesionMouseClicked
