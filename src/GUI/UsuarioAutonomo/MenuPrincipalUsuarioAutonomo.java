@@ -1,5 +1,7 @@
 package GUI.UsuarioAutonomo;
 
+import GUI.IniciarSesion;
+import Negocios.UsuarioAutonomo;
 import Negocios.UsuarioAutonomoDAO;
 
 /**
@@ -8,6 +10,7 @@ import Negocios.UsuarioAutonomoDAO;
  */
 public class MenuPrincipalUsuarioAutonomo extends javax.swing.JFrame {
     private String usuario;
+    private UsuarioAutonomo alumno;
     /**
      * Creates new form MenuPrincipal
      */
@@ -18,7 +21,15 @@ public class MenuPrincipalUsuarioAutonomo extends javax.swing.JFrame {
         
         this.usuario = usuario;      
         UsuarioAutonomoDAO alumno = new UsuarioAutonomoDAO();
-        nombreUsuarioAutonomo.setText(alumno.obtenerUsuario(usuario));          
+        this.alumno = alumno.obtenerUsuario(usuario);    
+        
+    }
+    public MenuPrincipalUsuarioAutonomo(UsuarioAutonomo usuario){
+        
+        initComponents();
+        setVisible(true);
+        setLocationRelativeTo(null);
+        alumno = usuario;
     }
 
     /**
@@ -45,7 +56,7 @@ public class MenuPrincipalUsuarioAutonomo extends javax.swing.JFrame {
         panelMisAvances = new javax.swing.JPanel();
         descripcionCalendarioActividades = new javax.swing.JLabel();
         descripcionMisAvances = new javax.swing.JLabel();
-        descripcionReservarActividad = new javax.swing.JLabel();
+        descripcionReservarActividad1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -57,7 +68,7 @@ public class MenuPrincipalUsuarioAutonomo extends javax.swing.JFrame {
         descripcionAvisos.setBackground(new java.awt.Color(65, 167, 19));
         descripcionAvisos.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 12)); // NOI18N
         descripcionAvisos.setForeground(new java.awt.Color(255, 255, 255));
-        descripcionAvisos.setText("jLabel1");
+        descripcionAvisos.setText("Debes estar atento a los avisos que sean publicados en el portal ");
         panelMenu.add(descripcionAvisos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 420, 20));
 
         panelReservarActividad.setBackground(new java.awt.Color(102, 225, 47));
@@ -128,6 +139,11 @@ public class MenuPrincipalUsuarioAutonomo extends javax.swing.JFrame {
         botonCerrarSesion.setBorderPainted(false);
         botonCerrarSesion.setContentAreaFilled(false);
         botonCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCerrarSesionActionPerformed(evt);
+            }
+        });
         panelMenu.add(botonCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, -1, -1));
 
         nombreUsuarioAutonomo.setBackground(new java.awt.Color(255, 255, 255));
@@ -183,20 +199,20 @@ public class MenuPrincipalUsuarioAutonomo extends javax.swing.JFrame {
         descripcionCalendarioActividades.setBackground(new java.awt.Color(65, 167, 19));
         descripcionCalendarioActividades.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 12)); // NOI18N
         descripcionCalendarioActividades.setForeground(new java.awt.Color(255, 255, 255));
-        descripcionCalendarioActividades.setText("jLabel1");
+        descripcionCalendarioActividades.setText("Mira todas las actividades que son ofertadas en el periodo escolar");
         panelMenu.add(descripcionCalendarioActividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 420, 20));
 
         descripcionMisAvances.setBackground(new java.awt.Color(65, 167, 19));
         descripcionMisAvances.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 12)); // NOI18N
         descripcionMisAvances.setForeground(new java.awt.Color(255, 255, 255));
-        descripcionMisAvances.setText("jLabel1");
-        panelMenu.add(descripcionMisAvances, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, 420, 20));
+        descripcionMisAvances.setText("Verifica las actividades y evidencias que haz realizado en el presente periodo");
+        panelMenu.add(descripcionMisAvances, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, 430, 20));
 
-        descripcionReservarActividad.setBackground(new java.awt.Color(65, 167, 19));
-        descripcionReservarActividad.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 12)); // NOI18N
-        descripcionReservarActividad.setForeground(new java.awt.Color(255, 255, 255));
-        descripcionReservarActividad.setText("jLabel1");
-        panelMenu.add(descripcionReservarActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 84, 420, 20));
+        descripcionReservarActividad1.setBackground(new java.awt.Color(65, 167, 19));
+        descripcionReservarActividad1.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 12)); // NOI18N
+        descripcionReservarActividad1.setForeground(new java.awt.Color(255, 255, 255));
+        descripcionReservarActividad1.setText("Aquí podrás reservar las actividades que son ofertadas a lo largo del periodo");
+        panelMenu.add(descripcionReservarActividad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 84, 420, 20));
 
         getContentPane().add(panelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 470));
 
@@ -204,12 +220,18 @@ public class MenuPrincipalUsuarioAutonomo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonReservarActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReservarActividadActionPerformed
-        ReservarActividad reservarActividad = new ReservarActividad(usuario);
+        ReservarActividad reservarActividad = new ReservarActividad(alumno);
+        dispose();
     }//GEN-LAST:event_botonReservarActividadActionPerformed
 
     private void botonVerAvisosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerAvisosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonVerAvisosActionPerformed
+
+    private void botonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesionActionPerformed
+        IniciarSesion iniciarSesion = new IniciarSesion ();
+        dispose();
+    }//GEN-LAST:event_botonCerrarSesionActionPerformed
 
     
 
@@ -222,7 +244,7 @@ public class MenuPrincipalUsuarioAutonomo extends javax.swing.JFrame {
     private javax.swing.JLabel descripcionAvisos;
     private javax.swing.JLabel descripcionCalendarioActividades;
     private javax.swing.JLabel descripcionMisAvances;
-    private javax.swing.JLabel descripcionReservarActividad;
+    private javax.swing.JLabel descripcionReservarActividad1;
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JLabel nombreUsuarioAutonomo;
     private javax.swing.JPanel panelAvisos;

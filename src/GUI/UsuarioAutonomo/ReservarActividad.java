@@ -5,6 +5,7 @@
  */
 package GUI.UsuarioAutonomo;
 
+import Negocios.UsuarioAutonomo;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,12 +13,12 @@ import javax.swing.JOptionPane;
  * @author Ozuna
  */
 public class ReservarActividad extends javax.swing.JFrame {
-    private String usuario;
+    private UsuarioAutonomo alumno;
     /**
      * Creates new form ReservarActividad
      */
-    public ReservarActividad(String usuario) {
-        this.usuario = usuario;
+    public ReservarActividad( UsuarioAutonomo usuario) {
+        alumno = usuario;
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
@@ -231,7 +232,12 @@ public class ReservarActividad extends javax.swing.JFrame {
     }//GEN-LAST:event_comboActividadesActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        dispose();      
+        int confirmacionSalida = JOptionPane.showConfirmDialog(null,"Se perderan los datos ¿Salir?", "Alerta", JOptionPane.YES_NO_OPTION);
+        
+        if(confirmacionSalida == 0){
+            MenuPrincipalUsuarioAutonomo menuPrincipalUsuarioAutonomo = new MenuPrincipalUsuarioAutonomo(alumno);
+            dispose();
+        }  
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

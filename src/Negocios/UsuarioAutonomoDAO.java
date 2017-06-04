@@ -12,34 +12,46 @@ import java.sql.SQLException;
 public class UsuarioAutonomoDAO implements IUsuarioAutonomoDAO {
 
     @Override
-    public String obtenerUsuario(String usuario) {
+    public UsuarioAutonomo obtenerUsuario(String usuario) {
         
         Conexion conexion = new Conexion();
         PreparedStatement sentencia = null;
         ResultSet resultado = null;
         String consultaSQL = null;
-        String nombreUsuarioAutonomo = null;
         
-        consultaSQL = "SELECT nombreUsuarioAutonomo, apellidosUsuarioAutonomo FROM usuarioAutonomo WHERE usuario =?";
+        UsuarioAutonomo  alumno = new UsuarioAutonomo();
+        
+        consultaSQL = "SELECT * FROM usuarioAutonomo WHERE usuario =?";
         
         try{
             
-            sentencia = conexion.obtenerConexion().prepareStatement(consultaSQL);
-            
+            sentencia = conexion.obtenerConexion().prepareStatement(consultaSQL);           
             sentencia.setString(1, usuario);
-            
             resultado = sentencia.executeQuery();
             
-            if(resultado.next())
-                nombreUsuarioAutonomo = resultado.getString(1)+ " "+ resultado.getString(2);
-            
+            if(resultado.next()){
+                
+                alumno.setMatricula( resultado.getString(1));
+                alumno.setUsuario(resultado.getString(2));
+                alumno.setNombre(resultado.getString(4));
+                alumno.setApellidos(resultado.getString(5));
+                alumno.setCorreo(resultado.getString(6));
+                alumno.setFechaNacimiento(resultado.getDate(7));
+                alumno.setGenero(resultado.getString(8));
+                alumno.setArea(resultado.getString(9));
+                alumno.setCarrera(resultado.getString(10));
+                alumno.setTelefono(resultado.getString(11));
+                alumno.setDiscapacidad(resultado.getString(12));
+                alumno.setLenguaIndigena(resultado.getString(13));
+                   
+            }
         }catch(SQLException ex){
             
         }finally{
             conexion.cerrarConexion();
         }
         
-        return nombreUsuarioAutonomo;
+        return alumno;
         
     }
     

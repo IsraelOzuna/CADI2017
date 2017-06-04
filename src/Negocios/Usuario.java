@@ -9,11 +9,11 @@ import java.sql.Date;
 public class Usuario {
     private String apellidos;
     private String nombre;
-    private char[] contrasena;
     private Date fechaNacimiento;
     private String genero;
     private String telefono;
     private String usuario;
+    private String correo;
 
     public Usuario() {
     }
@@ -32,14 +32,6 @@ public class Usuario {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public char[] getContrasena() {
-        return contrasena;
-    }
-
-    public void setContrasena(char[] contrasena) {
-        this.contrasena = contrasena;
     }
 
     public Date getFechaNacimiento() {
@@ -73,4 +65,13 @@ public class Usuario {
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+    
 }
