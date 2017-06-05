@@ -6,6 +6,8 @@
 package GUIAsesor;
 
 import GUI.IniciarSesion;
+import Negocios.Asesor;
+import Negocios.AsesorDAO;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -15,20 +17,43 @@ import javax.swing.JLabel;
  * @author Cristhian Ubaldo Promotor
  */
 public class MenuPrincipalAsesor extends javax.swing.JFrame {
-    private String usuario;
+    private Asesor asesor;
+    
     /**
      * Creates new form MenuPrincipalAsesor
      */
     public MenuPrincipalAsesor(String usuario) {
-        this.usuario = usuario;
+        
         initComponents();
         setLocationRelativeTo(null);
-        setVisible(true);
+        setVisible(true);   
         
         logoUV.setIcon(colocarImagenesEnEtiquetas("/Recursos/Flor1024x768SinFondo.png", logoUV));
         fondoMenu.setIcon(colocarImagenesEnEtiquetas("/Recursos/fondo-menu-pantalla.jpg", fondoMenu));
+        
+        AsesorDAO asesor= new AsesorDAO();
+        this.asesor = asesor.obtenerAsesor(usuario);    
+        nombreAsesor.setText("Nombre: " + this.asesor.getNombre());
+        apellidosAsesor.setText("Apellidos: " + this.asesor.getApellidos());
+        correoAsesor.setText("Correo: " + this.asesor.getCorreo());
+                
     }
-
+    
+    public MenuPrincipalAsesor(Asesor asesor) {
+        
+        initComponents();
+        setLocationRelativeTo(null);
+        setVisible(true);   
+        
+        logoUV.setIcon(colocarImagenesEnEtiquetas("/Recursos/Flor1024x768SinFondo.png", logoUV));
+        fondoMenu.setIcon(colocarImagenesEnEtiquetas("/Recursos/fondo-menu-pantalla.jpg", fondoMenu));
+        
+        this.asesor = asesor;    
+        nombreAsesor.setText("Nombre: " + this.asesor.getNombre());
+        apellidosAsesor.setText("Apellidos: " + this.asesor.getApellidos());
+        correoAsesor.setText("Correo: " + this.asesor.getCorreo());
+                
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -156,14 +181,14 @@ public class MenuPrincipalAsesor extends javax.swing.JFrame {
         getContentPane().add(botonCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 10, -1, -1));
 
         fondoMenu.setText("c");
-        getContentPane().add(fondoMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 930, 570));
+        getContentPane().add(fondoMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void panelMisSeccionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelMisSeccionesMouseClicked
         // TODO add your handling code here:
-        ConsultarMisGrupos ventana = new ConsultarMisGrupos(usuario);
+        ConsultarMisGrupos ventana = new ConsultarMisGrupos(asesor);
         dispose();
     }//GEN-LAST:event_panelMisSeccionesMouseClicked
 

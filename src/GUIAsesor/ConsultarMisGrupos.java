@@ -5,6 +5,7 @@
  */
 package GUIAsesor;
 
+import Negocios.Asesor;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -15,12 +16,12 @@ import javax.swing.JLabel;
  * @author Cristhian Ubaldo Promotor
  */
 public class ConsultarMisGrupos extends javax.swing.JFrame {
-    private String usuario;
+    private Asesor asesor;
     /**
      * Creates new form ConsultarMisGrupos
      */
-    public ConsultarMisGrupos(String usuario) {
-        this.usuario = usuario;
+    public ConsultarMisGrupos(Asesor asesor) {
+        this.asesor = asesor;
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
@@ -116,7 +117,8 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
-        // TODO add your handling code here:
+        MenuPrincipalAsesor menu = new MenuPrincipalAsesor(asesor);
+        dispose();
     }//GEN-LAST:event_regresarActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
