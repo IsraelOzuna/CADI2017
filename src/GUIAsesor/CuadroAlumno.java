@@ -17,6 +17,7 @@ public class CuadroAlumno extends javax.swing.JPanel {
 
     /**
      * Creates new form CuadroAlumno
+     * @param alumno
      */
     public CuadroAlumno(UsuarioAutonomo alumno) {
         initComponents();
