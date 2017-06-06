@@ -19,7 +19,6 @@ public class UsuarioDAO implements IUsuarioDAO{
         Conexion datos = new Conexion();
         MensajeBandera mensaje = null;
         Connection conexion;
-        String roles[] = {"COORDINADOR","RECEPCIONISTA","ASESOR","USUARIOAUTONOMO"};
         
         conexion = datos.obtenerConexion();
             
@@ -30,11 +29,13 @@ public class UsuarioDAO implements IUsuarioDAO{
                 String consultaSQL = null;
                 ResultSet resultados = null;
                 PreparedStatement sentencia =  null;
-                String contrasenaCifrada = contrasenaCifrada = cifrarContrasena(contrasena);
+                String contrasenaCifrada = cifrarContrasena(contrasena);
         
                 try {
 
                     for (int posicionRol = 0; posicionRol < 4; posicionRol++) {
+                        
+                        String roles[] = {"COORDINADOR","RECEPCIONISTA","ASESOR","USUARIOAUTONOMO"};
                         
                         boolean encontrado = false;
                         

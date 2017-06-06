@@ -5,7 +5,11 @@
  */
 package GUI.UsuarioAutonomo;
 
+import Negocios.Reservacion;
+import Negocios.ReservacionDAO;
 import Negocios.UsuarioAutonomo;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,20 +17,93 @@ import javax.swing.JOptionPane;
  * @author Ozuna
  */
 public class ReservarActividad extends javax.swing.JFrame {
+
     private UsuarioAutonomo alumno;
+
     /**
      * Creates new form ReservarActividad
      */
-    public ReservarActividad( UsuarioAutonomo usuario) {
+    public ReservarActividad(UsuarioAutonomo usuario) {
         alumno = usuario;
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
-        
-      
-        
     }
 
+    public String[] obtenerActividades(UsuarioAutonomo alumno) {
+        List<Reservacion> actividadesDisponibles;
+        ReservacionDAO reservacionDAO = new ReservacionDAO();
+        actividadesDisponibles = reservacionDAO.obtenerActividadesParaReservacion(alumno);
+        List<String> listaActividadesDisponibles = new ArrayList<>();
+
+        for (int i = 0; i < actividadesDisponibles.size(); i++) {
+            listaActividadesDisponibles.add(actividadesDisponibles.get(i).getActividad().getNombre());
+        }
+
+        List<String> actividadesNoRepetidas = evitarActividadesRepetidas(listaActividadesDisponibles);
+
+        String[] arregloActividadesNoRepetidasDisponibles = new String[actividadesNoRepetidas.size()];
+
+        for (int i = 0; i < actividadesNoRepetidas.size(); i++) {
+            arregloActividadesNoRepetidasDisponibles[i] = actividadesNoRepetidas.get(i);
+        }
+
+        return arregloActividadesNoRepetidasDisponibles;
+    }
+
+    public String[] obtenerFechasDeActividad(UsuarioAutonomo alumno) {
+        List<Reservacion> fechasDisponibles;
+        ReservacionDAO reservacionDAO = new ReservacionDAO();
+        fechasDisponibles = reservacionDAO.obtenerActividadesParaReservacion(alumno);
+        List<String> listaFechasDisponibles = new ArrayList<>();
+
+        for (int i = 0; i < fechasDisponibles.size(); i++) {
+            listaFechasDisponibles.add(String.valueOf(fechasDisponibles.get(i).getFecha()));
+        }
+        
+        List<String> fechasNoRepetidasDisponibles = evitarFechasRepetidas(listaFechasDisponibles);
+        
+        String [] arregloFechasNoRepetidasDisponibles = new String[fechasNoRepetidasDisponibles.size()];
+        
+        for(int i = 0; i < fechasNoRepetidasDisponibles.size(); i ++){
+            arregloFechasNoRepetidasDisponibles[i] = fechasNoRepetidasDisponibles.get(i);
+        }
+
+        return arregloFechasNoRepetidasDisponibles;
+    }
+
+    public String[] obtenerHorariosDeActividad(UsuarioAutonomo alumno) {
+        List<Reservacion> horasDisponibles;
+        ReservacionDAO reservacionDAO = new ReservacionDAO();
+        horasDisponibles = reservacionDAO.obtenerActividadesParaReservacion(alumno);
+        String[] arregloHorasDisponibles = new String[horasDisponibles.size()];
+
+        for (int i = 0; i < horasDisponibles.size(); i++) {
+            arregloHorasDisponibles[i] = String.valueOf(horasDisponibles.get(i).getHoraInicio());
+        }
+
+        return arregloHorasDisponibles;
+    }
+
+    public List<String> evitarActividadesRepetidas(List<String> actividadesDisponibles) {
+        List<String> actividadesNoRepetidas = new ArrayList<>();
+        for (String actividadDisponible : actividadesDisponibles) {
+            if (!actividadesNoRepetidas.contains(actividadDisponible)) {
+                actividadesNoRepetidas.add(actividadDisponible);
+            }
+        }
+        return actividadesNoRepetidas;
+    }
+
+    public List<String> evitarFechasRepetidas(List<String> fechasDisponibles){
+        List<String> fechasNoRepetidas = new ArrayList<>();
+        for(String fechaDisponible : fechasDisponibles){
+            if(!fechasNoRepetidas.contains(fechaDisponible)){
+                fechasNoRepetidas.add(fechaDisponible);
+            }
+        }
+        return fechasNoRepetidas;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -84,10 +161,20 @@ public class ReservarActividad extends javax.swing.JFrame {
         actividad.setText("Actividad para la reservación:");
         panelReservarActividad.add(actividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
 
-        comboHoras.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboHoras.setModel(new javax.swing.DefaultComboBoxModel<>(obtenerHorariosDeActividad(alumno)));
+        comboHoras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboHorasActionPerformed(evt);
+            }
+        });
         panelReservarActividad.add(comboHoras, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 190, -1));
 
-        comboActividades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboActividades.setModel(new javax.swing.DefaultComboBoxModel<>(obtenerActividades(alumno)));
+        comboActividades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboActividadesActionPerformed(evt);
+            }
+        });
         panelReservarActividad.add(comboActividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 190, -1));
 
         botonCancelar.setBackground(new java.awt.Color(255, 255, 255));
@@ -213,7 +300,12 @@ public class ReservarActividad extends javax.swing.JFrame {
         });
         panelReservarActividad.add(campoFechaConfirmada, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 160, -1));
 
-        comboFechas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboFechas.setModel(new javax.swing.DefaultComboBoxModel<>(obtenerFechasDeActividad (alumno)));
+        comboFechas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboFechasActionPerformed(evt);
+            }
+        });
         panelReservarActividad.add(comboFechas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 190, -1));
 
         getContentPane().add(panelReservarActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 300));
@@ -230,17 +322,25 @@ public class ReservarActividad extends javax.swing.JFrame {
     }//GEN-LAST:event_campoFechaConfirmadaActionPerformed
 
     private void comboActividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboActividadesActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_comboActividadesActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        int confirmacionSalida = JOptionPane.showConfirmDialog(null,"Se perderan los datos ¿Salir?", "Alerta", JOptionPane.YES_NO_OPTION);
-        
-        if(confirmacionSalida == 0){
+        int confirmacionSalida = JOptionPane.showConfirmDialog(null, "Se perderan los datos ¿Salir?", "Alerta", JOptionPane.YES_NO_OPTION);
+
+        if (confirmacionSalida == 0) {
             MenuPrincipalUsuarioAutonomo menuPrincipalUsuarioAutonomo = new MenuPrincipalUsuarioAutonomo(alumno);
             dispose();
-        }  
+        }
     }//GEN-LAST:event_botonCancelarActionPerformed
+
+    private void comboFechasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFechasActionPerformed
+
+    }//GEN-LAST:event_comboFechasActionPerformed
+
+    private void comboHorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboHorasActionPerformed
+
+    }//GEN-LAST:event_comboHorasActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel actividad;

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Datos;
 
 import Recursos.MensajeBandera;
@@ -23,12 +18,15 @@ public class ConexionTest {
     @Test
     public void testObtenerConexion() {
         MensajeBandera mensajeEsperado = MensajeBandera.CONEXION_EXITOSA;
-        assertEquals(mensajeEsperado, conexion.obtenerConexion());
+        conexion.obtenerConexion();
+        assertEquals(mensajeEsperado, conexion.getMensaje());
     }
-
+    
     @Test
     public void testCerrarConexion() {
-        
+        MensajeBandera mensajeEsperado = MensajeBandera.CONEXION_CERRADA;
+        conexion.obtenerConexion();
+        assertEquals(mensajeEsperado, conexion.cerrarConexion());
     }
     
 }

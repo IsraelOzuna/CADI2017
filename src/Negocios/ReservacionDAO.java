@@ -11,8 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *
@@ -31,7 +30,8 @@ public class ReservacionDAO implements IReservacionDAO {
         
         idIdiomas = obtenerIdiomasUsurioAutonomo(alumno);
         conexion.obtenerConexion();
-          String consultaSQL = "SELECT *FROM actividadOfertada, actividad WHERE estado = 'Disponible' and actividadOfertada.idActividad = activida.idActivida and "
+          String consultaSQL = "SELECT *FROM actividadOfertada, actividad WHERE estado = 'Disponible' and "
+                  + "actividadOfertada.idActividad = actividad.idActividad and "
                 + " idIdioma = ?";
 
         for (int i = 0; i < idIdiomas.size(); i++) {
@@ -62,16 +62,13 @@ public class ReservacionDAO implements IReservacionDAO {
 
             } catch (SQLException ex) {
                 //bitacora
+                
             }
             finally{
                 conexion.cerrarConexion();
             }
 
         }
-
-      
-        
-
         return reservacionesDisponibles;
     }
 

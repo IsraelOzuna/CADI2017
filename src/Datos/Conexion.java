@@ -36,7 +36,7 @@ public class Conexion {
         
         try{
             
-            conexionBD = DriverManager.getConnection("jdbc:mysql://192.168.43.149/cadi?user=SAIUser&password=sai2017cadi");
+            conexionBD = DriverManager.getConnection("jdbc:mysql://127.0.0.1/cadi?user=SAIUser&password=sai2017cadi");
             
             mensaje = MensajeBandera.CONEXION_EXITOSA;
             
