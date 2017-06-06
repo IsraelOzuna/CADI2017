@@ -5,12 +5,13 @@
  */
 package Negocios;
 
-import java.util.List;
+import java.util.ArrayList;
+
 
 /**
  *
  * @author Cristhian Ubaldo Promotor
  */
 public interface ISeccionDAO {
-    public List <Seccion> obtenerSeccione(String numeroPersonalAsesor);
+    public ArrayList <Seccion> obtenerSeccione(String numeroPersonalAsesor);
 }
