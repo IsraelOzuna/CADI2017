@@ -6,10 +6,7 @@
 package GUIAsesor;
 
 import Negocios.Asesor;
-import Negocios.Seccion;
-import Negocios.SeccionDAO;
 import java.awt.Image;
-import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -20,7 +17,6 @@ import javax.swing.JLabel;
  */
 public class ConsultarMisGrupos extends javax.swing.JFrame {
     private Asesor asesor;
-    ArrayList<Seccion> misSecciones;
     /**
      * Creates new form ConsultarMisGrupos
      */
@@ -29,49 +25,7 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
-        SeccionDAO secciones = new SeccionDAO();
-        
-        misSecciones = secciones.obtenerSeccione(asesor.getNumeroPersonal());
-        
-        crearCuadrosSecciones(misSecciones);
-        
-    }
-    
-    public void crearCuadrosSecciones(ArrayList<Seccion> misSecciones){
-        
-        ArrayList <CuadroSeccion> cuadros = new ArrayList();
-        
-        for(int i = 0; i < misSecciones.size(); i++){
-            
-            CuadroSeccion cuadro = new CuadroSeccion(misSecciones.get(i),panelAlumnos);
-            cuadros.add(cuadro);
-        }
-    
-        mostrarCuadrosSeccion(cuadros);
-    }
-    
-    
-    public void mostrarCuadrosSeccion(ArrayList<CuadroSeccion> cuadros){
-        
-        int x = 5;
-        int y = 5;
-        int contador = 0;
-        
-        CuadroSeccion cuadro;
-        
-        for(int i=0; i < cuadros.size();i++){
-            
-            cuadro = cuadros.get(i);
-            cuadro.setBounds(x, y, 187, 134);
-            panelCursos.add(cuadro);
-            y += 144;
-        }
-            
-        
-        panelCursos.repaint();
-        panelCursos.revalidate();
-        repaint();
-        
+
     }
 
     /**
@@ -86,12 +40,12 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
         regresar = new javax.swing.JButton();
         campoBusqueda = new javax.swing.JTextField();
         buscar = new javax.swing.JButton();
+        panelCursos = new javax.swing.JScrollPane();
         cursos = new javax.swing.JLabel();
         cancelar = new javax.swing.JButton();
         alumnos = new javax.swing.JLabel();
+        panelAlumnos = new javax.swing.JScrollPane();
         indicacionBusqueda = new javax.swing.JLabel();
-        panelCursos = new javax.swing.JPanel();
-        panelAlumnos = new javax.swing.JPanel();
         fondoConsultarGrupos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -132,10 +86,11 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
 
         buscar.setText("Buscar");
         getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, -1, -1));
+        getContentPane().add(panelCursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 200, 520));
 
         cursos.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
         cursos.setText("Cursos");
-        getContentPane().add(cursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, -1, -1));
+        getContentPane().add(cursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
 
         cancelar.setText("Cancelar búsqueda");
         cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -148,12 +103,11 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
         alumnos.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
         alumnos.setText("Alumnos");
         getContentPane().add(alumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, -1, -1));
+        getContentPane().add(panelAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 730, 520));
 
         indicacionBusqueda.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
         indicacionBusqueda.setText("Buscar:");
         getContentPane().add(indicacionBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
-        getContentPane().add(panelCursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 210, 540));
-        getContentPane().add(panelAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 710, 530));
 
         fondoConsultarGrupos.setBackground(new java.awt.Color(255, 255, 255));
         fondoConsultarGrupos.setOpaque(true);
@@ -206,8 +160,8 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
     private javax.swing.JLabel cursos;
     private javax.swing.JLabel fondoConsultarGrupos;
     private javax.swing.JLabel indicacionBusqueda;
-    private javax.swing.JPanel panelAlumnos;
-    private javax.swing.JPanel panelCursos;
+    private javax.swing.JScrollPane panelAlumnos;
+    private javax.swing.JScrollPane panelCursos;
     private javax.swing.JButton regresar;
     // End of variables declaration//GEN-END:variables
 }

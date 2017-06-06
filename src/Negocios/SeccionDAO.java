@@ -15,9 +15,9 @@ import java.util.List;
 public class SeccionDAO implements ISeccionDAO{
 
     @Override
-    public ArrayList<Seccion> obtenerSeccione(String numeroPersonalAsesor) {
+    public List<Seccion> obtenerSeccione(String numeroPersonalAsesor) {
         
-        ArrayList<Seccion> misSecciones = new ArrayList();
+        List<Seccion> misSecciones = new ArrayList();
         
         Conexion conexion = new Conexion();
         PreparedStatement sentencia = null;
@@ -33,7 +33,6 @@ public class SeccionDAO implements ISeccionDAO{
             resultado = sentencia.executeQuery();
             
             while(resultado.next()){
-                
                 Seccion seccionACargo = new Seccion();
                 seccionACargo.setNrc(resultado.getString(1));
                 seccionACargo.setNombre(resultado.getString(2));
@@ -41,15 +40,14 @@ public class SeccionDAO implements ISeccionDAO{
                 seccionACargo.setFechaFin(resultado.getDate(4));
                 seccionACargo.setCupo(resultado.getInt(5));
                 
-                seccionACargo.setAlumnosSeccion(obtenerAlumnosSeccion(resultado.getString(1)));
+                UsuarioAutonomo alumnoSeccion = new UsuarioAutonomo();
+               
                 
-                misSecciones.add(seccionACargo);
+                   
             }
             
         }catch (SQLException ex){
-            ex.printStackTrace();
-        }finally{
-            conexion.cerrarConexion();
+            
         }
         
         
@@ -60,42 +58,8 @@ public class SeccionDAO implements ISeccionDAO{
     public List<UsuarioAutonomo> obtenerAlumnosSeccion(String nrcCruso){
         
         List<UsuarioAutonomo> usuariosSeccion = new ArrayList();
-        Conexion conexion = new Conexion();
-        PreparedStatement sentencia = null;
-        ResultSet resultado = null;
-        String consultaSQL = null;
         
-        consultaSQL = "SELECT *FROM usuarioAutonomo, inscripcion WHERE usuarioAutonomo.matricula = inscripcion.matricula AND nrc = ? ";
-        try{
-            
-            sentencia = conexion.obtenerConexion().prepareStatement(consultaSQL);           
-            sentencia.setString(1, nrcCruso);
-            resultado = sentencia.executeQuery();
-            
-            while(resultado.next()){
-                UsuarioAutonomo alumno = new UsuarioAutonomo();
-                
-                alumno.setMatricula( resultado.getString(1));
-                alumno.setUsuario(resultado.getString(2));
-                alumno.setNombre(resultado.getString(4));
-                alumno.setApellidos(resultado.getString(5));
-                alumno.setCorreo(resultado.getString(6));
-                alumno.setFechaNacimiento(resultado.getDate(7));
-                alumno.setGenero(resultado.getString(8));
-                alumno.setArea(resultado.getString(9));
-                alumno.setCarrera(resultado.getString(10));
-                alumno.setTelefono(resultado.getString(11));
-                alumno.setDiscapacidad(resultado.getString(12));
-                alumno.setLenguaIndigena(resultado.getString(13));
-                
-                usuariosSeccion.add(alumno);
-            }
-            
-        }catch(SQLException ex){
-            ex.printStackTrace();
-        }finally{
-         conexion.cerrarConexion();
-        }
+        
         return usuariosSeccion;
     }
     
