@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI.UsuarioAutonomo;
 
 import Negocios.Reservacion;
@@ -51,35 +46,41 @@ public class ReservarActividad extends javax.swing.JFrame {
         return arregloActividadesNoRepetidasDisponibles;
     }
 
-    public String[] obtenerFechasDeActividad(UsuarioAutonomo alumno) {
+    public String[] obtenerFechasDeActividad(UsuarioAutonomo alumno, String nombreActividad) {
         List<Reservacion> fechasDisponibles;
         ReservacionDAO reservacionDAO = new ReservacionDAO();
         fechasDisponibles = reservacionDAO.obtenerActividadesParaReservacion(alumno);
         List<String> listaFechasDisponibles = new ArrayList<>();
 
         for (int i = 0; i < fechasDisponibles.size(); i++) {
-            listaFechasDisponibles.add(String.valueOf(fechasDisponibles.get(i).getFecha()));
+            if (fechasDisponibles.get(i).getActividad().getNombre().equals(nombreActividad)) {
+                listaFechasDisponibles.add(String.valueOf(fechasDisponibles.get(i).getFecha()));
+            }
         }
-        
+
         List<String> fechasNoRepetidasDisponibles = evitarFechasRepetidas(listaFechasDisponibles);
-        
-        String [] arregloFechasNoRepetidasDisponibles = new String[fechasNoRepetidasDisponibles.size()];
-        
-        for(int i = 0; i < fechasNoRepetidasDisponibles.size(); i ++){
+
+        String[] arregloFechasNoRepetidasDisponibles = new String[fechasNoRepetidasDisponibles.size()];
+
+        for (int i = 0; i < fechasNoRepetidasDisponibles.size(); i++) {
             arregloFechasNoRepetidasDisponibles[i] = fechasNoRepetidasDisponibles.get(i);
         }
 
         return arregloFechasNoRepetidasDisponibles;
     }
 
-    public String[] obtenerHorariosDeActividad(UsuarioAutonomo alumno) {
+    public String[] obtenerHorariosDeActividad(UsuarioAutonomo alumno, String fechaActividad) {
         List<Reservacion> horasDisponibles;
         ReservacionDAO reservacionDAO = new ReservacionDAO();
         horasDisponibles = reservacionDAO.obtenerActividadesParaReservacion(alumno);
-        String[] arregloHorasDisponibles = new String[horasDisponibles.size()];
+        String[] arregloHorasDisponibles = new String[horasDisponibles.size()];     
 
         for (int i = 0; i < horasDisponibles.size(); i++) {
-            arregloHorasDisponibles[i] = String.valueOf(horasDisponibles.get(i).getHoraInicio());
+
+            if (String.valueOf(horasDisponibles.get(i).getFecha()).equals(fechaActividad)) {
+                
+                arregloHorasDisponibles[i] = String.valueOf(horasDisponibles.get(i).getHoraInicio());
+            }
         }
 
         return arregloHorasDisponibles;
@@ -95,15 +96,17 @@ public class ReservarActividad extends javax.swing.JFrame {
         return actividadesNoRepetidas;
     }
 
-    public List<String> evitarFechasRepetidas(List<String> fechasDisponibles){
+    public List<String> evitarFechasRepetidas(List<String> fechasDisponibles) {
         List<String> fechasNoRepetidas = new ArrayList<>();
-        for(String fechaDisponible : fechasDisponibles){
-            if(!fechasNoRepetidas.contains(fechaDisponible)){
+        for (String fechaDisponible : fechasDisponibles) {
+            if (!fechasNoRepetidas.contains(fechaDisponible)) {
                 fechasNoRepetidas.add(fechaDisponible);
             }
+
         }
         return fechasNoRepetidas;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -161,7 +164,7 @@ public class ReservarActividad extends javax.swing.JFrame {
         actividad.setText("Actividad para la reservación:");
         panelReservarActividad.add(actividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
 
-        comboHoras.setModel(new javax.swing.DefaultComboBoxModel<>(obtenerHorariosDeActividad(alumno)));
+        comboHoras.setModel(new javax.swing.DefaultComboBoxModel<>());
         comboHoras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboHorasActionPerformed(evt);
@@ -300,7 +303,7 @@ public class ReservarActividad extends javax.swing.JFrame {
         });
         panelReservarActividad.add(campoFechaConfirmada, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 160, -1));
 
-        comboFechas.setModel(new javax.swing.DefaultComboBoxModel<>(obtenerFechasDeActividad (alumno)));
+        comboFechas.setModel(new javax.swing.DefaultComboBoxModel<>());
         comboFechas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboFechasActionPerformed(evt);
@@ -322,7 +325,12 @@ public class ReservarActividad extends javax.swing.JFrame {
     }//GEN-LAST:event_campoFechaConfirmadaActionPerformed
 
     private void comboActividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboActividadesActionPerformed
+        String[] fechasDeActividad = obtenerFechasDeActividad(alumno, comboActividades.getItemAt(comboActividades.getSelectedIndex()));
+        comboFechas.removeAllItems();
 
+        for (int i = 0; i < fechasDeActividad.length; i++) {
+            comboFechas.addItem(fechasDeActividad[i]);
+        }
     }//GEN-LAST:event_comboActividadesActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
@@ -335,7 +343,14 @@ public class ReservarActividad extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void comboFechasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFechasActionPerformed
+        String[] horasDeActividad = obtenerHorariosDeActividad(alumno, comboFechas.getItemAt(comboFechas.getSelectedIndex()));
+        comboHoras.removeAllItems();
 
+        for (int i = 0; i < horasDeActividad.length; i++) {
+            if(horasDeActividad[i] != null){
+                comboHoras.addItem(horasDeActividad[i]);
+            }
+        }
     }//GEN-LAST:event_comboFechasActionPerformed
 
     private void comboHorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboHorasActionPerformed

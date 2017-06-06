@@ -99,7 +99,7 @@
         <Component class="javax.swing.JComboBox" name="comboHoras">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(obtenerHorariosDeActividad(alumno))" type="code"/>
+              <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;()" type="code"/>
             </Property>
           </Properties>
           <Events>
@@ -479,7 +479,7 @@
         <Component class="javax.swing.JComboBox" name="comboFechas">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(obtenerFechasDeActividad (alumno))" type="code"/>
+              <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;()" type="code"/>
             </Property>
           </Properties>
           <Events>
