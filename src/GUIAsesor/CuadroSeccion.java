@@ -55,7 +55,7 @@ public class CuadroSeccion extends javax.swing.JPanel {
             cuadro = cuadros.get(i);
             
             if(contador < 2){
-                cuadro.setBounds(x, y, 320, 148 );
+                cuadro.setBounds(x, y, 360, 170 );
                 panelAlumnos.add(cuadro);
                 x += 330;
                 contador++;
@@ -63,7 +63,7 @@ public class CuadroSeccion extends javax.swing.JPanel {
                 y += 158;
                 x = 10;
                 contador = 0;
-                cuadro.setBounds(x, y, 320, 148);
+                cuadro.setBounds(x, y, 360, 170);
                 panelAlumnos.add(cuadro);
                 x += 215;
             }
@@ -94,7 +94,7 @@ public class CuadroSeccion extends javax.swing.JPanel {
             }
         });
 
-        nombreSeccion.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
+        nombreSeccion.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
 
         nrc.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
         nrc.setText("NRC: ");

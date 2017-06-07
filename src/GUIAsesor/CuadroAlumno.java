@@ -51,12 +51,13 @@ public class CuadroAlumno extends javax.swing.JPanel {
         fotoGenero = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 2, true));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         datosAlumno.setColumns(20);
         datosAlumno.setRows(5);
         add(datosAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 179, 138));
-        add(fotoGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 110, 120));
+        add(fotoGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 110, 120));
     }// </editor-fold>//GEN-END:initComponents
 
 

@@ -170,7 +170,9 @@ public class MenuPrincipalAsesor extends javax.swing.JFrame {
         botonCerrarSesion.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
         botonCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
         botonCerrarSesion.setText("Cerrar Sesión");
+        botonCerrarSesion.setBorder(null);
         botonCerrarSesion.setBorderPainted(false);
+        botonCerrarSesion.setContentAreaFilled(false);
         botonCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonCerrarSesion.setOpaque(false);
         botonCerrarSesion.addActionListener(new java.awt.event.ActionListener() {

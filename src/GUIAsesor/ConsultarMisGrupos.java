@@ -31,6 +31,9 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         SeccionDAO secciones = new SeccionDAO();
         
+        ImageIcon imagen = new ImageIcon(getClass().getResource("/Recursos/fondo-menu-pantalla.jpg"));
+        ImageIcon icono = new ImageIcon(imagen.getImage().getScaledInstance(fondoConsultarGrupos.getWidth(), fondoConsultarGrupos.getHeight(), Image.SCALE_DEFAULT));
+        fondoConsultarGrupos.setIcon(icono);
         misSecciones = secciones.obtenerSeccione(asesor.getNumeroPersonal());
         
         crearCuadrosSecciones(misSecciones);
@@ -55,7 +58,6 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
         
         int x = 5;
         int y = 5;
-        int contador = 0;
         
         CuadroSeccion cuadro;
         
@@ -98,14 +100,20 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
         setTitle("Consultar grupos");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        regresar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 14)); // NOI18N
+        regresar.setForeground(new java.awt.Color(255, 255, 255));
         regresar.setText("Regresar");
+        regresar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        regresar.setContentAreaFilled(false);
+        regresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         regresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 regresarActionPerformed(evt);
             }
         });
-        getContentPane().add(regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 30, -1, -1));
+        getContentPane().add(regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 31, 90, 30));
 
+        campoBusqueda.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 14)); // NOI18N
         campoBusqueda.setText("Ingrese nombre o matricula");
         campoBusqueda.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -130,32 +138,57 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
         });
         getContentPane().add(campoBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 190, 30));
 
+        buscar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 14)); // NOI18N
+        buscar.setForeground(new java.awt.Color(255, 255, 255));
         buscar.setText("Buscar");
-        getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, -1, -1));
+        buscar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        buscar.setContentAreaFilled(false);
+        buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, 80, 30));
 
         cursos.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
+        cursos.setForeground(new java.awt.Color(255, 255, 255));
         cursos.setText("Cursos");
         getContentPane().add(cursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, -1, -1));
 
+        cancelar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 14)); // NOI18N
+        cancelar.setForeground(new java.awt.Color(255, 255, 255));
         cancelar.setText("Cancelar búsqueda");
+        cancelar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        cancelar.setContentAreaFilled(false);
+        cancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, -1, -1));
+        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, 160, 30));
 
         alumnos.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
+        alumnos.setForeground(new java.awt.Color(255, 255, 255));
         alumnos.setText("Alumnos");
         getContentPane().add(alumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, -1, -1));
 
         indicacionBusqueda.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
+        indicacionBusqueda.setForeground(new java.awt.Color(255, 255, 255));
         indicacionBusqueda.setText("Buscar:");
-        getContentPane().add(indicacionBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
-        getContentPane().add(panelCursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 210, 540));
-        getContentPane().add(panelAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 710, 530));
+        getContentPane().add(indicacionBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 30, 60, 30));
 
-        fondoConsultarGrupos.setBackground(new java.awt.Color(255, 255, 255));
+        panelCursos.setBackground(new java.awt.Color(255, 255, 255));
+        panelCursos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
+        panelCursos.setOpaque(false);
+        getContentPane().add(panelCursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 220, 540));
+
+        panelAlumnos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
+        panelAlumnos.setOpaque(false);
+        getContentPane().add(panelAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 710, 540));
+
+        fondoConsultarGrupos.setBackground(new java.awt.Color(153, 153, 255));
         fondoConsultarGrupos.setOpaque(true);
         getContentPane().add(fondoConsultarGrupos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 700));
 
@@ -168,7 +201,11 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
     }//GEN-LAST:event_regresarActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
-        // TODO add your handling code here:
+        
+       panelCursos.removeAll();
+       panelAlumnos.removeAll();
+       crearCuadrosSecciones(misSecciones);
+        
     }//GEN-LAST:event_cancelarActionPerformed
 
     private void campoBusquedaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoBusquedaMouseClicked
@@ -186,7 +223,6 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
     }//GEN-LAST:event_campoBusquedaKeyTyped
 
     private void campoBusquedaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoBusquedaKeyPressed
-        // TODO add your handling code here:
         
     }//GEN-LAST:event_campoBusquedaKeyPressed
 
@@ -194,6 +230,12 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_campoBusquedaKeyReleased
+
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+       panelCursos.removeAll();
+       panelAlumnos.removeAll();
+       repaint();
+    }//GEN-LAST:event_buscarActionPerformed
 
    
     
