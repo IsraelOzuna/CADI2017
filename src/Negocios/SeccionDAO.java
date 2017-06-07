@@ -57,6 +57,7 @@ public class SeccionDAO implements ISeccionDAO{
         
     }
     
+    @Override
     public List<UsuarioAutonomo> obtenerAlumnosSeccion(String nrcCruso){
         
         List<UsuarioAutonomo> usuariosSeccion = new ArrayList();
@@ -99,7 +100,8 @@ public class SeccionDAO implements ISeccionDAO{
         return usuariosSeccion;
     }
     
-    public ArrayList<UsuarioAutonomo> obtenerMisAlumnos(Asesor asesor, String palabraClave){
+    @Override
+    public ArrayList<UsuarioAutonomo> buscarMisAlumnos(Asesor asesor, String palabraClave){
         
         ArrayList<UsuarioAutonomo> misAlumnos = new ArrayList();
         

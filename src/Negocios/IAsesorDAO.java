@@ -10,5 +10,5 @@ package Negocios;
  * @author Cristhian Ubaldo Promotor
  */
 public interface IAsesorDAO {
-    public Asesor obtenerAsesor(String usuario);
+    public Asesor obtenerAsesor(String usuario);    
 }

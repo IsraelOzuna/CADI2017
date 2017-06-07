@@ -12,7 +12,6 @@ import Negocios.UsuarioAutonomo;
 import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 
@@ -21,10 +20,13 @@ import javax.swing.JOptionPane;
  * @author Cristhian Ubaldo Promotor
  */
 public class ConsultarMisGrupos extends javax.swing.JFrame {
+   
     private Asesor asesor;
     ArrayList<Seccion> seccionesEncontradas;
+    
     /**
      * Creates new form ConsultarMisGrupos
+     * @param asesor
      */
     public ConsultarMisGrupos(Asesor asesor) {
         this.asesor = asesor;
@@ -254,7 +256,7 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
             panelCursos.removeAll();
             panelAlumnos.removeAll();
             repaint();
-            crearCuadrosAlumnos(busqueda.obtenerMisAlumnos(asesor, campoBusqueda.getText()));
+            crearCuadrosAlumnos(busqueda.buscarMisAlumnos(asesor, campoBusqueda.getText()));
         }
         
 
