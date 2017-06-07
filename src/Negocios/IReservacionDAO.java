@@ -17,4 +17,5 @@ import java.util.List;
 public interface IReservacionDAO {
     public List<Reservacion> obtenerActividadesParaReservacion(UsuarioAutonomo alumno);
     public MensajeBandera reservarActividad(UsuarioAutonomo alumno, Reservacion actividadAReservar);
+    public List<String> obtenerIdiomasUsurioAutonomo(UsuarioAutonomo alumno);
 }

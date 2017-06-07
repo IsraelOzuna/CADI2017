@@ -67,7 +67,7 @@ public class ReservacionDAO implements IReservacionDAO {
 
         return reservacionesDisponibles;
     }
-
+    @Override
     public List<String> obtenerIdiomasUsurioAutonomo(UsuarioAutonomo alumno) {
 
         List<String> idIdiomas = new ArrayList();

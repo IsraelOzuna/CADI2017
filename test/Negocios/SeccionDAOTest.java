@@ -86,7 +86,7 @@ public class SeccionDAOTest {
     }
     
     @Test
-    public void testObtenerMisAlumnosSinCoicidencias() {
+    public void testbuscarMisAlumnosSinCoicidencias() {
         
         List<UsuarioAutonomo> alumnos = new ArrayList();
         alumnos = seccion.buscarMisAlumnos(asesor, "dd");
