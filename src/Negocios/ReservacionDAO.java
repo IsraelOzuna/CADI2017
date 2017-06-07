@@ -9,11 +9,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author Ozuna
+ * Permite conexiones con la base de datos para recuperar actividades ofertadas
+ * ademas de reservar una actividad que se oferte
+ * @author Israel Reyes Ozuna
+ * @author Cristhian Ubaldo Promotor
+ * @version 06/06/2017
  */
 public class ReservacionDAO implements IReservacionDAO {
-
+    /**
+     * Obtiene las actividades ofertadas que el Alumno puede reservar
+     * @param alumno Almacena los datos del alumno con el que se realizarán operaciones de 
+     * busqueda.
+     * @return Regresa una lista de reservaciones que puede hacer
+     */
     @Override
     public List<Reservacion> obtenerActividadesParaReservacion(UsuarioAutonomo alumno) {
 
@@ -57,7 +65,6 @@ public class ReservacionDAO implements IReservacionDAO {
                 }
 
             } catch (SQLException ex) {
-                
                 ex.printStackTrace();
                 
             } finally {
@@ -68,6 +75,12 @@ public class ReservacionDAO implements IReservacionDAO {
 
         return reservacionesDisponibles;
     }
+    
+    /**
+     * Obtiene los idiomas que está estudiando el alumno
+     * @param alumno Es un usuario autónomo que tiene todos los datos del estudiante
+     * @return Regresa un arreglo de String que son los id de los idiomas que estudia
+     */
     @Override
     public List<String> obtenerIdiomasUsurioAutonomo(UsuarioAutonomo alumno) {
 
@@ -76,7 +89,8 @@ public class ReservacionDAO implements IReservacionDAO {
         PreparedStatement sentencia = null;
         ResultSet resultados = null;
 
-        String consultaSQL = "SELECT idiomaAsignado from inscripcion,usuarioAutonomo, seccion where inscripcion.matricula = usuarioAutonomo.matricula and"
+        String consultaSQL = "SELECT idiomaAsignado from inscripcion,usuarioAutonomo, seccion where "
+                + "inscripcion.matricula = usuarioAutonomo.matricula and"
                 + " inscripcion.nrc = seccion.nrc and usuarioAutonomo.matricula = ?";
 
         try {
@@ -90,7 +104,6 @@ public class ReservacionDAO implements IReservacionDAO {
             }
 
         } catch (SQLException ex) {
-            
             ex.printStackTrace();
         } finally {
             conexion.cerrarConexion();
@@ -98,7 +111,13 @@ public class ReservacionDAO implements IReservacionDAO {
 
         return idIdiomas;
     }
-
+    
+    /**
+     * Envia los datos necesarios para crear una reservacion
+     * @param alumno Trae los adtos del usario autónomo
+     * @param actividadAReservar Trae los datos de la actividad a reservar
+     * @return Regresa un mensaje que especifica si tuvo exito o no la reservacion
+     */
     @Override
     public MensajeBandera reservarActividad(UsuarioAutonomo alumno, Reservacion actividadAReservar) {
         MensajeBandera mensaje = null;
@@ -123,6 +142,7 @@ public class ReservacionDAO implements IReservacionDAO {
 
         } catch (SQLException ex) {
             mensaje = MensajeBandera.RESERVACION_FALLIDA;
+            ex.printStackTrace();
         } finally {
             datos.cerrarConexion();
         }

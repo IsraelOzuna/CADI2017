@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package GUIAsesor;
 
 import Negocios.Asesor;
@@ -16,7 +12,8 @@ import javax.swing.JOptionPane;
 
 
 /**
- *
+ * Interfaz gráfica que permite visualizar los grupos del asesor grupos
+ * @author Israel Reyes Ozuna
  * @author Cristhian Ubaldo Promotor
  */
 public class ConsultarMisGrupos extends javax.swing.JFrame {

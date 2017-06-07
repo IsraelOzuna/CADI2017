@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Negocios;
 
 import Datos.Conexion;
@@ -11,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * 
+ * Permite acceder ala base de datos para obtener un asesor
  * @author Israel Reyes Ozuna
  * @author Cristhian Ubaldo Promotor
  * @version 5/06/2017
