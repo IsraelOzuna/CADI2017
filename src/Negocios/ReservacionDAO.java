@@ -1,17 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Negocios;
 
 import Datos.Conexion;
+import Recursos.MensajeBandera;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  *
@@ -27,12 +22,12 @@ public class ReservacionDAO implements IReservacionDAO {
         Conexion conexion = new Conexion();
         PreparedStatement sentencia = null;
         ResultSet resultados = null;
-        
+
         idIdiomas = obtenerIdiomasUsurioAutonomo(alumno);
         conexion.obtenerConexion();
-          String consultaSQL = "SELECT *FROM actividadOfertada, actividad WHERE estado = 'Disponible' and "
-                  + "actividadOfertada.idActividad = actividad.idActividad and "
-                + " idIdioma = ?";
+        String consultaSQL = "SELECT *FROM actividadOfertada, actividad WHERE estado = 'Disponible' "
+                + "and actividadOfertada.idActividad = actividad.idActividad "
+                + " and  idIdioma = ?";
 
         for (int i = 0; i < idIdiomas.size(); i++) {
 
@@ -41,8 +36,8 @@ public class ReservacionDAO implements IReservacionDAO {
                 sentencia = conexion.obtenerConexion().prepareStatement(consultaSQL);
                 sentencia.setString(1, idIdiomas.get(i));
                 resultados = sentencia.executeQuery();
-                while(resultados.next()){
-                    
+                while (resultados.next()) {
+
                     Reservacion disponibles = new Reservacion();
                     disponibles.setIdReservacion(resultados.getString(1));
                     disponibles.setEstado(resultados.getString(2));
@@ -56,19 +51,20 @@ public class ReservacionDAO implements IReservacionDAO {
                     disponibles.getActividad().setDescripcion(resultados.getString(13));
                     disponibles.getActividad().setTipo(resultados.getString(14));
                     disponibles.getActividad().setObligatoria(resultados.getBoolean(15));
-                    
+
                     reservacionesDisponibles.add(disponibles);
+
                 }
 
             } catch (SQLException ex) {
                 //bitacora
                 
-            }
-            finally{
+            } finally {
                 conexion.cerrarConexion();
             }
 
         }
+
         return reservacionesDisponibles;
     }
 
@@ -94,11 +90,41 @@ public class ReservacionDAO implements IReservacionDAO {
 
         } catch (SQLException ex) {
 
-        }finally{
+        } finally {
             conexion.cerrarConexion();
         }
-        
+
         return idIdiomas;
     }
 
+    @Override
+    public MensajeBandera reservarActividad(UsuarioAutonomo alumno, Reservacion actividadAReservar) {
+        MensajeBandera mensaje = null;
+        Conexion datos = new Conexion();
+
+        try {
+            PreparedStatement sentencia = null;
+            String consultaSQL = "INSERT INTO reservacion VALUES (?,?,?,?,?,?,?,?)";
+            sentencia = datos.obtenerConexion().prepareStatement(consultaSQL);
+            sentencia.setString(1, null);
+            sentencia.setString(2, null);
+            sentencia.setFloat(3, 0);
+            sentencia.setString(4, null);
+            sentencia.setBoolean(5, false);
+            sentencia.setString(6, actividadAReservar.getIdReservacion());
+            sentencia.setString(7, alumno.getMatricula());
+            sentencia.setString(8, null);
+
+            sentencia.executeUpdate();
+
+            mensaje = MensajeBandera.RESERVACION_EXITOSA;
+
+        } catch (SQLException ex) {
+            mensaje = MensajeBandera.RESERVACION_FALLIDA;
+        } finally {
+            datos.cerrarConexion();
+        }
+
+        return mensaje;
+    }
 }
