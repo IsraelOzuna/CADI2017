@@ -11,8 +11,9 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
- *Intefaz gráfica que nos permitiráreservar una actividad
- * @author Israel Reyes Ozuna 
+ * Intefaz gráfica que nos permitiráreservar una actividad
+ *
+ * @author Israel Reyes Ozuna
  * @author Cristhian Ubaldo Promotor
  * @version 6/06/2017
  */
@@ -22,6 +23,7 @@ public class ReservarActividad extends javax.swing.JFrame {
 
     /**
      * Crea una ventana de ReservarActividad
+     *
      * @param usuario Son los datos del usuario autonomo
      */
     public ReservarActividad(UsuarioAutonomo usuario) {
@@ -30,11 +32,14 @@ public class ReservarActividad extends javax.swing.JFrame {
         setVisible(true);
         setLocationRelativeTo(null);
     }
-/**
- * Este metodo obtiene las actividades ofertadas y que se pueden reservar
- * @param alumno Es unobjeto de tipo UsuarioAutonomo
- * @return Retorna un arreglo de string que nos servira para llenar el comobox
- */
+
+    /**
+     * Este metodo obtiene las actividades ofertadas y que se pueden reservar
+     *
+     * @param alumno Es unobjeto de tipo UsuarioAutonomo
+     * @return Retorna un arreglo de string que nos servira para llenar el
+     * comobox
+     */
     public String[] obtenerActividades(UsuarioAutonomo alumno) {
         List<Reservacion> actividadesDisponibles;
         ReservacionDAO reservacionDAO = new ReservacionDAO();
@@ -58,8 +63,10 @@ public class ReservarActividad extends javax.swing.JFrame {
 
     /**
      * Obtiene las fechas de las actividades ofertadas para reservación
+     *
      * @param alumno el alumno que se necesita par consultar las actividades
-     * @param nombreActividad es el arreglo que no dice de que actividades necesito las fechas
+     * @param nombreActividad es el arreglo que no dice de que actividades
+     * necesito las fechas
      * @return un arreglo de fechas dependiendo de del
      */
     public String[] obtenerFechasDeActividad(UsuarioAutonomo alumno, String nombreActividad) {
@@ -87,9 +94,13 @@ public class ReservarActividad extends javax.swing.JFrame {
 
     /**
      * Obtiene los horarios que se pueden presentar según las fechas dadas
-     * @param alumno Es un Usuario autonomo que se necesita par consultar las actividades
-     * @param fechaActividad Es un arreglo de fechas el cual nos idicará las fechar de las que queremos las horas
-     * @return Retorna un arreglo de horarios que servira para llenar el ComboBox correspondiente
+     *
+     * @param alumno Es un Usuario autonomo que se necesita par consultar las
+     * actividades
+     * @param fechaActividad Es un arreglo de fechas el cual nos idicará las
+     * fechar de las que queremos las horas
+     * @return Retorna un arreglo de horarios que servira para llenar el
+     * ComboBox correspondiente
      */
     public String[] obtenerHorariosDeActividad(UsuarioAutonomo alumno, String fechaActividad) {
         List<Reservacion> horasDisponibles;
@@ -110,8 +121,10 @@ public class ReservarActividad extends javax.swing.JFrame {
 
     /**
      * Quita los nombres de las actividades que se repiten
-     * @param actividadesDisponibles son las actividades que se encuentras disponibles para reservar
-     * @return Retorna un arreglo de String 
+     *
+     * @param actividadesDisponibles son las actividades que se encuentras
+     * disponibles para reservar
+     * @return Retorna un arreglo de String
      */
     public List<String> evitarActividadesRepetidas(List<String> actividadesDisponibles) {
         List<String> actividadesNoRepetidas = new ArrayList<>();
@@ -125,8 +138,10 @@ public class ReservarActividad extends javax.swing.JFrame {
 
     /**
      * Quita las fechas repetidas segun las fechas
-     * @param fechasDisponibles Son las fechas existente sin embago exiten repetidas
-     * @return Regresa una lista de String 
+     *
+     * @param fechasDisponibles Son las fechas existente sin embago exiten
+     * repetidas
+     * @return Regresa una lista de String
      */
     public List<String> evitarFechasRepetidas(List<String> fechasDisponibles) {
         List<String> fechasNoRepetidas = new ArrayList<>();
@@ -138,15 +153,16 @@ public class ReservarActividad extends javax.swing.JFrame {
         }
         return fechasNoRepetidas;
     }
-/**
- * Llena los datos para que el usurio autónomo pueda
- * elegir la actividad que desee, sin tener que estar
- * memorizando los datos de éstas.
- * @param alumno son los datos del usuario autónomo
- * @param nombreActividad es el Nombre de la actividad a reservar
- * @param fechaActividad Es la fecha en la que se presenta esa actividad
- * @param horaActividad Es la hora de inicio en la que se dá dicha actividad
- */
+
+    /**
+     * Llena los datos para que el usurio autónomo pueda elegir la actividad que
+     * desee, sin tener que estar memorizando los datos de éstas.
+     *
+     * @param alumno son los datos del usuario autónomo
+     * @param nombreActividad es el Nombre de la actividad a reservar
+     * @param fechaActividad Es la fecha en la que se presenta esa actividad
+     * @param horaActividad Es la hora de inicio en la que se dá dicha actividad
+     */
     public void llenarCamposConfirmacionActividad(UsuarioAutonomo alumno, String nombreActividad, String fechaActividad, String horaActividad) {
         ReservacionDAO actividadConfirmacion = new ReservacionDAO();
         List<Reservacion> actividades;
@@ -175,11 +191,14 @@ public class ReservarActividad extends javax.swing.JFrame {
         }
 
     }
-/**
- * Filtra de las reservaciones la que desea reservar y que coincide con los 
- * datos especificados.
- * @return Una actividad ofertada para reservar especifica que podrá reservarla
- */
+
+    /**
+     * Filtra de las reservaciones la que desea reservar y que coincide con los
+     * datos especificados.
+     *
+     * @return Una actividad ofertada para reservar especifica que podrá
+     * reservarla
+     */
     public Reservacion obtenerReservacionSegunDatos() {
 
         List<Reservacion> actividades = new ArrayList();
@@ -188,7 +207,7 @@ public class ReservarActividad extends javax.swing.JFrame {
 
         String nombreActividadAReservar = comboActividades.getItemAt(comboActividades.getSelectedIndex());
         Date fechaActividad = Date.valueOf(comboFechas.getItemAt(comboFechas.getSelectedIndex()));
-        Time horaActividad = Time.valueOf( comboHoras.getItemAt(comboHoras.getSelectedIndex()));
+        Time horaActividad = Time.valueOf(comboHoras.getItemAt(comboHoras.getSelectedIndex()));
         actividades = actividadesDisponibles.obtenerActividadesParaReservacion(alumno);
 
         for (int i = 0; i < actividades.size(); i++) {
@@ -203,6 +222,37 @@ public class ReservarActividad extends javax.swing.JFrame {
         }
 
         return reservacion;
+    }
+    
+    /**
+     * Verifica que los comboBox no esten vacios para poder reservar una actividad
+     * 
+     * @param actividades es el comboBox donde aparecen las actividades
+     * @param fechas es el comboBox donde aparecen las fechas de la actividad
+     * seleccionada
+     * @param horas es el comboBox donde aparecen las horas de la actividad 
+     * seleccionada
+     */
+    public void verificarCombos() {
+        String actividades = comboActividades.getItemAt(comboActividades.getSelectedIndex());
+        String fechas = comboFechas.getItemAt(comboFechas.getSelectedIndex());
+        String horas = comboHoras.getItemAt(comboHoras.getSelectedIndex());
+
+        if (actividades == null || fechas == null || horas == null) {
+            JOptionPane.showMessageDialog(null, "Algún campo esta vacío");
+        } else {
+            Reservacion actividadAReservar = obtenerReservacionSegunDatos();
+            ReservacionDAO reservacionDAO = new ReservacionDAO();
+
+            if (MensajeBandera.RESERVACION_EXITOSA == reservacionDAO.reservarActividad(alumno, actividadAReservar)) {
+                JOptionPane.showMessageDialog(null, "Actividad reservada");
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al reservar actividad");
+            }
+            dispose();
+            new MenuPrincipalUsuarioAutonomo(alumno);
+        }
     }
 
     /**
@@ -415,73 +465,50 @@ public class ReservarActividad extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConfirmarActionPerformed
-        
-        Reservacion actividadAReservar = obtenerReservacionSegunDatos();
-        ReservacionDAO reservacionDAO = new ReservacionDAO();
-
-        if (comboActividades.getItemAt(comboActividades.getSelectedIndex()) == null
-                || comboFechas.getItemAt(comboFechas.getSelectedIndex()) == null
-                || comboHoras.getItemAt(comboHoras.getSelectedIndex()) == null) {
-            
-            JOptionPane.showMessageDialog(null, "Algún campo está vacío");
-       
-        } else {
-            //Se verifica que no exita un campo vacío  y si no es así intenta hacer una reservación.
-            if (MensajeBandera.RESERVACION_EXITOSA == reservacionDAO.reservarActividad(alumno, actividadAReservar)) {
-                
-                JOptionPane.showMessageDialog(null, "Actividad reservada");
-
-            } else {
-                
-                JOptionPane.showMessageDialog(null, "Error al reservar actividad");
-            }
-            
-            dispose();
-            new MenuPrincipalUsuarioAutonomo(alumno);
-        }               
+        verificarCombos();
     }//GEN-LAST:event_botonConfirmarActionPerformed
     private void campoFechaConfirmadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoFechaConfirmadaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoFechaConfirmadaActionPerformed
 
     private void comboActividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboActividadesActionPerformed
-        
+
         String[] fechasDeActividad = obtenerFechasDeActividad(alumno, comboActividades.getItemAt(comboActividades.getSelectedIndex()));
         comboFechas.removeAllItems();
 
-        for (int i = 0; i < fechasDeActividad.length; i++) {    
-            
-                comboFechas.addItem(fechasDeActividad[i]);                      
+        for (int i = 0; i < fechasDeActividad.length; i++) {
+
+            comboFechas.addItem(fechasDeActividad[i]);
         }
     }//GEN-LAST:event_comboActividadesActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        
+
         int confirmacionSalida = JOptionPane.showConfirmDialog(null, "Se perderan los datos ¿Salir?", "Alerta", JOptionPane.YES_NO_OPTION);
 
         if (confirmacionSalida == 0) {
-            
+
             MenuPrincipalUsuarioAutonomo menuPrincipalUsuarioAutonomo = new MenuPrincipalUsuarioAutonomo(alumno);
             dispose();
         }
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void comboFechasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFechasActionPerformed
-        
+
         String[] horasDeActividad = obtenerHorariosDeActividad(alumno, comboFechas.getItemAt(comboFechas.getSelectedIndex()));
         comboHoras.removeAllItems();
 
         for (int i = 0; i < horasDeActividad.length; i++) {
-            
+
             if (horasDeActividad[i] != null) {
-                
+
                 comboHoras.addItem(horasDeActividad[i]);
             }
         }
     }//GEN-LAST:event_comboFechasActionPerformed
 
     private void comboHorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboHorasActionPerformed
-        
+
         llenarCamposConfirmacionActividad(alumno, comboActividades.getItemAt(comboActividades.getSelectedIndex()),
                 comboFechas.getItemAt(comboFechas.getSelectedIndex()), comboHoras.getItemAt(comboHoras.getSelectedIndex()));
     }//GEN-LAST:event_comboHorasActionPerformed
