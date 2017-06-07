@@ -5,6 +5,7 @@
  */
 package Negocios;
 
+import Recursos.MensajeBandera;
 import java.util.List;
 
 
@@ -15,4 +16,5 @@ import java.util.List;
  */
 public interface IReservacionDAO {
     public List<Reservacion> obtenerActividadesParaReservacion(UsuarioAutonomo alumno);
+    public MensajeBandera reservarActividad(UsuarioAutonomo alumno, Reservacion actividadAReservar);
 }

@@ -36,8 +36,6 @@ public class Reservacion {
         this.idReservacion = idReservacion;
     }
 
-    
-
     public boolean isAsistencia() {
         return asistencia;
     }
@@ -140,8 +138,5 @@ public class Reservacion {
 
     public void setSala(String sala) {
         this.sala = sala;
-    }
-    
-    
-    
+    }   
 }

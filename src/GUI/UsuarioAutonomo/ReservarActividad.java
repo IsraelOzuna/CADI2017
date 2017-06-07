@@ -3,6 +3,9 @@ package GUI.UsuarioAutonomo;
 import Negocios.Reservacion;
 import Negocios.ReservacionDAO;
 import Negocios.UsuarioAutonomo;
+import Recursos.MensajeBandera;
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -73,12 +76,12 @@ public class ReservarActividad extends javax.swing.JFrame {
         List<Reservacion> horasDisponibles;
         ReservacionDAO reservacionDAO = new ReservacionDAO();
         horasDisponibles = reservacionDAO.obtenerActividadesParaReservacion(alumno);
-        String[] arregloHorasDisponibles = new String[horasDisponibles.size()];     
+        String[] arregloHorasDisponibles = new String[horasDisponibles.size()];
 
         for (int i = 0; i < horasDisponibles.size(); i++) {
 
             if (String.valueOf(horasDisponibles.get(i).getFecha()).equals(fechaActividad)) {
-                
+
                 arregloHorasDisponibles[i] = String.valueOf(horasDisponibles.get(i).getHoraInicio());
             }
         }
@@ -105,6 +108,60 @@ public class ReservarActividad extends javax.swing.JFrame {
 
         }
         return fechasNoRepetidas;
+    }
+
+    public void llenarCamposConfirmacionActividad(UsuarioAutonomo alumno, String nombreActividad, String fechaActividad, String horaActividad) {
+        ReservacionDAO actividadConfirmacion = new ReservacionDAO();
+        List<Reservacion> actividades;
+        actividades = actividadConfirmacion.obtenerActividadesParaReservacion(alumno);
+
+        for (int i = 0; i < actividades.size(); i++) {
+
+            if (actividades.get(i).getActividad().getNombre().equals(nombreActividad)) {
+
+                campoActividadConfirmada.setText(nombreActividad);
+                campoFechaConfirmada.setText(fechaActividad);
+                campoHoraConfirmada.setText(horaActividad);
+                campoSalaConfirmada.setText(actividades.get(i).getSala());
+                campoTipoConfirmado.setText(actividades.get(i).getActividad().getTipo());
+
+                if (actividades.get(i).getActividad().isObligatoria()) {
+
+                    campoCaracterConfirmado.setText("Sí");
+
+                } else {
+
+                    campoCaracterConfirmado.setText("No");
+
+                }
+            }
+        }
+
+    }
+
+    public Reservacion obtenerReservacionSegunDatos() {
+
+        List<Reservacion> actividades = new ArrayList();
+        ReservacionDAO actividadesDisponibles = new ReservacionDAO();
+        Reservacion reservacion = new Reservacion();
+
+        String nombreActividadAReservar = comboActividades.getItemAt(comboActividades.getSelectedIndex());
+        Date fechaActividad = Date.valueOf(comboFechas.getItemAt(comboFechas.getSelectedIndex()));
+        Time horaActividad = Time.valueOf( comboHoras.getItemAt(comboHoras.getSelectedIndex()));
+        actividades = actividadesDisponibles.obtenerActividadesParaReservacion(alumno);
+
+        for (int i = 0; i < actividades.size(); i++) {
+
+            if ((actividades.get(i).getActividad().getNombre().equals(nombreActividadAReservar))
+                    && ((actividades.get(i).getFecha()).equals(fechaActividad))
+                    && ((actividades.get(i).getHoraInicio()).equals(horaActividad))) {
+
+                reservacion = actividades.get(i);
+            }
+
+        }
+
+        return reservacion;
     }
 
     /**
@@ -317,9 +374,24 @@ public class ReservarActividad extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConfirmarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonConfirmarActionPerformed
+        Reservacion actividadAReservar = obtenerReservacionSegunDatos();
+        ReservacionDAO reservacionDAO = new ReservacionDAO();
 
+        if (comboActividades.getItemAt(comboActividades.getSelectedIndex()) == null
+                || comboFechas.getItemAt(comboFechas.getSelectedIndex()) == null
+                || comboHoras.getItemAt(comboHoras.getSelectedIndex()) == null) {
+            JOptionPane.showMessageDialog(null, "Algún campo está vacío");
+        } else {
+            if (MensajeBandera.RESERVACION_EXITOSA == reservacionDAO.reservarActividad(alumno, actividadAReservar)) {
+                JOptionPane.showMessageDialog(null, "Actividad reservada");
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al reservar actividad");
+            }
+            dispose();
+            new MenuPrincipalUsuarioAutonomo(alumno);
+        }               
+    }//GEN-LAST:event_botonConfirmarActionPerformed
     private void campoFechaConfirmadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoFechaConfirmadaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoFechaConfirmadaActionPerformed
@@ -328,8 +400,8 @@ public class ReservarActividad extends javax.swing.JFrame {
         String[] fechasDeActividad = obtenerFechasDeActividad(alumno, comboActividades.getItemAt(comboActividades.getSelectedIndex()));
         comboFechas.removeAllItems();
 
-        for (int i = 0; i < fechasDeActividad.length; i++) {
-            comboFechas.addItem(fechasDeActividad[i]);
+        for (int i = 0; i < fechasDeActividad.length; i++) {        
+                comboFechas.addItem(fechasDeActividad[i]);                      
         }
     }//GEN-LAST:event_comboActividadesActionPerformed
 
@@ -343,18 +415,20 @@ public class ReservarActividad extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void comboFechasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFechasActionPerformed
+        
         String[] horasDeActividad = obtenerHorariosDeActividad(alumno, comboFechas.getItemAt(comboFechas.getSelectedIndex()));
         comboHoras.removeAllItems();
 
         for (int i = 0; i < horasDeActividad.length; i++) {
-            if(horasDeActividad[i] != null){
+            if (horasDeActividad[i] != null) {
                 comboHoras.addItem(horasDeActividad[i]);
             }
         }
     }//GEN-LAST:event_comboFechasActionPerformed
 
     private void comboHorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboHorasActionPerformed
-
+        llenarCamposConfirmacionActividad(alumno, comboActividades.getItemAt(comboActividades.getSelectedIndex()),
+                comboFechas.getItemAt(comboFechas.getSelectedIndex()), comboHoras.getItemAt(comboHoras.getSelectedIndex()));
     }//GEN-LAST:event_comboHorasActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

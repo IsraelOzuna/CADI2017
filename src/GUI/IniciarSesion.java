@@ -123,6 +123,11 @@ public class IniciarSesion extends javax.swing.JFrame {
                 campoUsuarioActionPerformed(evt);
             }
         });
+        campoUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoUsuarioKeyTyped(evt);
+            }
+        });
         panelIniciarSesion.add(campoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 270, -1));
 
         botonCancelar.setBackground(new java.awt.Color(255, 255, 255));
@@ -283,6 +288,13 @@ public class IniciarSesion extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
+
+    private void campoUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoUsuarioKeyTyped
+        int limiteCaracteres = 20;
+        if(campoUsuario.getText().length() >= limiteCaracteres){
+            evt.consume();
+        }
+    }//GEN-LAST:event_campoUsuarioKeyTyped
 
     /**
      * @param args the command line arguments
