@@ -74,7 +74,7 @@ public class UsuarioDAO implements IUsuarioDAO{
                     if(mensaje == null)
                         mensaje = MensajeBandera.USUARIO_INVALIDO;
                 } catch (SQLException ex) {
-
+                    ex.printStackTrace();
                 }finally{
                     datos.cerrarConexion();
                 }
@@ -114,7 +114,7 @@ public class UsuarioDAO implements IUsuarioDAO{
             }
 
         } catch (SQLException ex) {
-            //bitacora
+            ex.printStackTrace();
         }finally{
             conexionAux.cerrarConexion();
         }

@@ -57,7 +57,7 @@ public class ReservacionDAO implements IReservacionDAO {
                 }
 
             } catch (SQLException ex) {
-                //bitacora
+                ex.printStackTrace();
                 
             } finally {
                 conexion.cerrarConexion();
@@ -75,7 +75,8 @@ public class ReservacionDAO implements IReservacionDAO {
         PreparedStatement sentencia = null;
         ResultSet resultados = null;
 
-        String consultaSQL = "SELECT idiomaAsignado from inscripcion,usuarioAutonomo, seccion where inscripcion.matricula = usuarioAutonomo.matricula and"
+        String consultaSQL = "SELECT idiomaAsignado from inscripcion,usuarioAutonomo, seccion where "
+                + "inscripcion.matricula = usuarioAutonomo.matricula and"
                 + " inscripcion.nrc = seccion.nrc and usuarioAutonomo.matricula = ?";
 
         try {
@@ -89,14 +90,13 @@ public class ReservacionDAO implements IReservacionDAO {
             }
 
         } catch (SQLException ex) {
-
+            ex.printStackTrace();
         } finally {
             conexion.cerrarConexion();
         }
 
         return idIdiomas;
     }
-
     @Override
     public MensajeBandera reservarActividad(UsuarioAutonomo alumno, Reservacion actividadAReservar) {
         MensajeBandera mensaje = null;
@@ -121,6 +121,7 @@ public class ReservacionDAO implements IReservacionDAO {
 
         } catch (SQLException ex) {
             mensaje = MensajeBandera.RESERVACION_FALLIDA;
+            ex.printStackTrace();
         } finally {
             datos.cerrarConexion();
         }

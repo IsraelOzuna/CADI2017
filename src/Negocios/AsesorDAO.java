@@ -47,7 +47,7 @@ public class AsesorDAO implements IAsesorDAO{
                    
             }
         }catch(SQLException ex){
-            
+            ex.printStackTrace();
         }finally{
             conexion.cerrarConexion();
         }

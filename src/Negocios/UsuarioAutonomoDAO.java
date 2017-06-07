@@ -46,7 +46,7 @@ public class UsuarioAutonomoDAO implements IUsuarioAutonomoDAO {
                    
             }
         }catch(SQLException ex){
-            
+            ex.printStackTrace();
         }finally{
             conexion.cerrarConexion();
         }
