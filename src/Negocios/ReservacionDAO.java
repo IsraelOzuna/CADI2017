@@ -11,15 +11,18 @@ import java.util.List;
 /**
  * Permite conexiones con la base de datos para recuperar actividades ofertadas
  * ademas de reservar una actividad que se oferte
+ *
  * @author Israel Reyes Ozuna
  * @author Cristhian Ubaldo Promotor
  * @version 06/06/2017
  */
 public class ReservacionDAO implements IReservacionDAO {
+
     /**
      * Obtiene las actividades ofertadas que el Alumno puede reservar
-     * @param alumno Almacena los datos del alumno con el que se realizarán operaciones de 
-     * busqueda.
+     *
+     * @param alumno Almacena los datos del alumno con el que se realizarán
+     * operaciones de busqueda.
      * @return Regresa una lista de reservaciones que puede hacer
      */
     @Override
@@ -33,17 +36,16 @@ public class ReservacionDAO implements IReservacionDAO {
 
         idIdiomas = obtenerIdiomasUsurioAutonomo(alumno);
         conexion.obtenerConexion();
-        String consultaSQL = "SELECT *FROM actividadOfertada, actividad WHERE NOT EXISTS "
-                + "(SELECT *FROM reservacion WHERE reservacion.idActividadOfertada = actividadOfertada.idActividad)"
-                + " and estado = 'Disponible' "
-                + "and actividadOfertada.idActividad = actividad.idActividad "
-                + " and  idIdioma = ?";
-
+        String consultaSQL = "SELECT *FROM actividadOfertada, actividad WHERE NOT EXISTS (SELECT *FROM reservacion WHERE "
+                + "actividad.idActividad = actividadOfertada.idActividad and "
+                + "actividadOfertada.idActividadOfertada = reservacion.idActividadOfertada) "
+                + "and estado = 'Disponible' and actividadOfertada.idActividad = actividad.idActividad and  idIdioma = ?";
+        
         for (int i = 0; i < idIdiomas.size(); i++) {
 
             try {
 
-                sentencia = conexion.obtenerConexion().prepareStatement(consultaSQL);
+                sentencia = conexion.obtenerConexion().prepareStatement(consultaSQL);               
                 sentencia.setString(1, idIdiomas.get(i));
                 resultados = sentencia.executeQuery();
                 while (resultados.next()) {
@@ -63,12 +65,12 @@ public class ReservacionDAO implements IReservacionDAO {
                     disponibles.getActividad().setObligatoria(resultados.getBoolean(15));
 
                     reservacionesDisponibles.add(disponibles);
-
+                    
                 }
 
             } catch (SQLException ex) {
                 ex.printStackTrace();
-                
+
             } finally {
                 conexion.cerrarConexion();
             }
@@ -77,11 +79,14 @@ public class ReservacionDAO implements IReservacionDAO {
 
         return reservacionesDisponibles;
     }
-    
+
     /**
      * Obtiene los idiomas que está estudiando el alumno
-     * @param alumno Es un usuario autónomo que tiene todos los datos del estudiante
-     * @return Regresa un arreglo de String que son los id de los idiomas que estudia
+     *
+     * @param alumno Es un usuario autónomo que tiene todos los datos del
+     * estudiante
+     * @return Regresa un arreglo de String que son los id de los idiomas que
+     * estudia
      */
     @Override
     public List<String> obtenerIdiomasUsurioAutonomo(UsuarioAutonomo alumno) {
@@ -113,12 +118,14 @@ public class ReservacionDAO implements IReservacionDAO {
 
         return idIdiomas;
     }
-    
+
     /**
      * Envia los datos necesarios para crear una reservacion
+     *
      * @param alumno Trae los adtos del usario autónomo
      * @param actividadAReservar Trae los datos de la actividad a reservar
-     * @return Regresa un mensaje que especifica si tuvo exito o no la reservacion
+     * @return Regresa un mensaje que especifica si tuvo exito o no la
+     * reservacion
      */
     @Override
     public MensajeBandera reservarActividad(UsuarioAutonomo alumno, Reservacion actividadAReservar) {
@@ -151,4 +158,7 @@ public class ReservacionDAO implements IReservacionDAO {
 
         return mensaje;
     }
+
+
+
 }
