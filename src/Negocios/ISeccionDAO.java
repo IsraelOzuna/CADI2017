@@ -12,8 +12,8 @@ import java.util.List;
  */
 public interface ISeccionDAO {
     
-    public List <Seccion> obtenerSeccione(String numeroPersonalAsesor);
+    public List <Seccion> obtenerSeccionesDeAsesor(String numeroPersonalAsesor);
      public List<UsuarioAutonomo> obtenerAlumnosSeccion(String nrcCruso);
-     public ArrayList<UsuarioAutonomo> buscarMisAlumnos(Asesor asesor, String palabraClave);
+     public ArrayList<UsuarioAutonomo> buscarAlumnosAsesor(Asesor asesor, String palabraClave);
      
 }

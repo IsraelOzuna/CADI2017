@@ -28,5 +28,16 @@ public class AsesorDAOTest {
         assertEquals(asesorEsperado.getNumeroPersonal(),asesorObtenido.getNumeroPersonal());
         
     }
+    @Test
+    public void testObtenerAsesorNoExiste() {
+        
+        AsesorDAO datosAsesor = new AsesorDAO();
+        Asesor asesorEsperado = null;
+        Asesor asesorObtenido = new Asesor();
+        asesorObtenido = datosAsesor.obtenerAsesor("edbenjnites");
+        
+        assertEquals(asesorEsperado,asesorObtenido);
+        
+    }
     
 }

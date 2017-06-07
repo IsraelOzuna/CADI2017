@@ -7,5 +7,5 @@ package Negocios;
  * @version 4/06/2017
  */
 public interface IUsuarioAutonomoDAO {
-    public UsuarioAutonomo obtenerUsuario(String usuario);
+    public UsuarioAutonomo obtenerUsuarioAutonomo(String usuario);
 }

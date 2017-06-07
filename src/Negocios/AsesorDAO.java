@@ -49,6 +49,8 @@ public class AsesorDAO implements IAsesorDAO{
                asesor.setTelefono(resultado.getString(6));
                asesor.setCarreraEgresada(resultado.getString(6));
                    
+            }else{
+                asesor = null;
             }
         }catch(SQLException ex){
             ex.printStackTrace();

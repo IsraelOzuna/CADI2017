@@ -4,6 +4,8 @@ import Datos.Conexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *Realiza conexiones con la base de datos
@@ -19,14 +21,14 @@ public class UsuarioAutonomoDAO implements IUsuarioAutonomoDAO {
      * @return Regresa la infromacíon del usuario autónomo en un objeto del mismo tipo
      */
     @Override
-    public UsuarioAutonomo obtenerUsuario(String usuario) {
+    public UsuarioAutonomo obtenerUsuarioAutonomo(String usuario) {
         
         Conexion conexion = new Conexion();
         PreparedStatement sentencia = null;
         ResultSet resultado = null;
         String consultaSQL = null;
         
-        UsuarioAutonomo  alumno = new UsuarioAutonomo();
+        UsuarioAutonomo  alumno = null;
         
         consultaSQL = "SELECT * FROM usuarioAutonomo WHERE usuario =?";
         
@@ -38,6 +40,7 @@ public class UsuarioAutonomoDAO implements IUsuarioAutonomoDAO {
             
             if(resultado.next()){
                 
+                alumno = new UsuarioAutonomo();
                 alumno.setMatricula( resultado.getString(1));
                 alumno.setUsuario(resultado.getString(2));
                 alumno.setNombre(resultado.getString(4));
@@ -52,10 +55,11 @@ public class UsuarioAutonomoDAO implements IUsuarioAutonomoDAO {
                 alumno.setLenguaIndigena(resultado.getString(13));
                    
             }
-        }catch(SQLException ex){
-            ex.printStackTrace();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioAutonomoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             conexion.cerrarConexion();
+            
         }
         
         return alumno;

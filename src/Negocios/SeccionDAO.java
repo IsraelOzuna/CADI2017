@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,7 +22,7 @@ public class SeccionDAO implements ISeccionDAO{
      * de dichas secciones
      */
    @Override
-    public ArrayList<Seccion> obtenerSeccione(String numeroPersonalAsesor) {
+    public ArrayList<Seccion> obtenerSeccionesDeAsesor(String numeroPersonalAsesor) {
         
         ArrayList<Seccion> misSecciones = new ArrayList();
         
@@ -76,6 +78,7 @@ public class SeccionDAO implements ISeccionDAO{
         PreparedStatement sentencia = null;
         ResultSet resultado = null;
         String consultaSQL = null;
+        UsuarioAutonomo alumno = null;
         
         consultaSQL = "SELECT *FROM usuarioAutonomo, inscripcion WHERE usuarioAutonomo.matricula = inscripcion.matricula AND nrc = ? ";
         try{
@@ -85,7 +88,7 @@ public class SeccionDAO implements ISeccionDAO{
             resultado = sentencia.executeQuery();
             
             while(resultado.next()){
-                UsuarioAutonomo alumno = new UsuarioAutonomo();
+                alumno = new UsuarioAutonomo();
                 
                 alumno.setMatricula( resultado.getString(1));
                 alumno.setUsuario(resultado.getString(2));
@@ -103,9 +106,9 @@ public class SeccionDAO implements ISeccionDAO{
                 usuariosSeccion.add(alumno);
             }
             
-        }catch(SQLException ex){
-            ex.printStackTrace();
-        }finally{
+        } catch (SQLException ex) {
+           Logger.getLogger(SeccionDAO.class.getName()).log(Level.SEVERE, null, ex);
+       }finally{
          conexion.cerrarConexion();
         }
         return usuariosSeccion;
@@ -119,14 +122,15 @@ public class SeccionDAO implements ISeccionDAO{
      * @return Es un lista de alumnos los cuales tienen en su interior la palabra que busca
      */
     @Override
-    public ArrayList<UsuarioAutonomo> buscarMisAlumnos(Asesor asesor, String palabraClave){
+    public ArrayList<UsuarioAutonomo> buscarAlumnosAsesor(Asesor asesor, String palabraClave){
         
-        ArrayList<UsuarioAutonomo> misAlumnos = new ArrayList();
+        ArrayList<UsuarioAutonomo> misAlumnos = null;
         
         Conexion conexion = new Conexion();
         PreparedStatement sentencia = null;
         ResultSet resultado = null;
         String consultaSQL = null;
+        UsuarioAutonomo alumnoEncontrado = null;
         
         consultaSQL = "SELECT usuarioAutonomo.matricula, usuario,  nombreUsuarioAutonomo, apellidosUsuarioAutonomo,"
                 + " correoUsuarioAutonomo, fechaNacimiento, genero, area, carrera, telefono,"
@@ -141,9 +145,9 @@ public class SeccionDAO implements ISeccionDAO{
             sentencia.setString(2, "%" + palabraClave+"%");
             sentencia.setString(3, "%" + palabraClave+"%");
             resultado = sentencia.executeQuery();
-            
+            misAlumnos = new ArrayList();
             while(resultado.next()){
-                UsuarioAutonomo alumnoEncontrado = new UsuarioAutonomo();
+                alumnoEncontrado = new UsuarioAutonomo();
                 
                 alumnoEncontrado.setMatricula( resultado.getString(1));
                 alumnoEncontrado.setUsuario(resultado.getString(2));
@@ -161,9 +165,9 @@ public class SeccionDAO implements ISeccionDAO{
                 misAlumnos.add(alumnoEncontrado);
             }
             
-        }catch (SQLException ex){
-            ex.printStackTrace();
-        }finally{
+        } catch (SQLException ex) {
+           Logger.getLogger(SeccionDAO.class.getName()).log(Level.SEVERE, null, ex);
+       }finally{
             conexion.cerrarConexion();
         }
         

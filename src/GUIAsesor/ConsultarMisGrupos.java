@@ -6,6 +6,8 @@ import Negocios.Seccion;
 import Negocios.SeccionDAO;
 import Negocios.UsuarioAutonomo;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -35,7 +37,7 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
         ImageIcon imagen = new ImageIcon(getClass().getResource("/Recursos/fondo-menu-pantalla.jpg"));
         ImageIcon icono = new ImageIcon(imagen.getImage().getScaledInstance(fondoConsultarGrupos.getWidth(), fondoConsultarGrupos.getHeight(), Image.SCALE_DEFAULT));
         fondoConsultarGrupos.setIcon(icono);
-        seccionesEncontradas = secciones.obtenerSeccione(asesor.getNumeroPersonal());
+        seccionesEncontradas = secciones.obtenerSeccionesDeAsesor(asesor.getNumeroPersonal());
         
         crearCuadrosSecciones(seccionesEncontradas);
         
@@ -181,6 +183,11 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
                 campoBusquedaMouseClicked(evt);
             }
         });
+        campoBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoBusquedaKeyTyped(evt);
+            }
+        });
         getContentPane().add(campoBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 190, 30));
 
         botonBuscar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 14)); // NOI18N
@@ -247,6 +254,7 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
        //Regresa al estado antes de la búsquda
+       campoBusqueda.setText("");
        panelCursos.removeAll();
        panelAlumnos.removeAll();
        crearCuadrosSecciones(seccionesEncontradas);
@@ -261,7 +269,9 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
         
-        if(campoBusqueda.getText().isEmpty()){
+        String [] campoVacio = campoBusqueda.getText().split(" ");
+        
+        if(campoBusqueda.getText().isEmpty() || campoBusqueda.getText().equals("Ingrese nombre o matricula") || campoVacio.length == 0){
             
             JOptionPane.showMessageDialog(null, "No hay nada para buscar");
             
@@ -271,11 +281,48 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
             panelCursos.removeAll();
             panelAlumnos.removeAll();
             repaint();
-            crearCuadrosAlumnos(busqueda.buscarMisAlumnos(asesor, campoBusqueda.getText()));
+            crearCuadrosAlumnos(busqueda.buscarAlumnosAsesor(asesor, campoBusqueda.getText()));
+            
+            if(busqueda.buscarAlumnosAsesor(asesor, campoBusqueda.getText()).size() == 0 ){
+                JOptionPane.showMessageDialog(null, "No hay coincidencias con la búsqueda");
+            }else{
+                crearCuadrosAlumnos(busqueda.buscarAlumnosAsesor(asesor, campoBusqueda.getText()));
+            }
         }
         
 
     }//GEN-LAST:event_botonBuscarActionPerformed
+
+    private void campoBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoBusquedaKeyTyped
+        
+        int limite = 20;
+          
+if(campoBusqueda.getText().length() == 26){
+                    campoBusqueda.setText("");
+                }
+        campoBusqueda.addKeyListener(new KeyListener() {      
+
+            public void keyTyped(KeyEvent tecla) {
+               
+                
+                
+                if (campoBusqueda.getText().length() == limite) {
+                    
+                    tecla.consume();
+                    
+                }
+            }
+
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+
+    }//GEN-LAST:event_campoBusquedaKeyTyped
 
    
     

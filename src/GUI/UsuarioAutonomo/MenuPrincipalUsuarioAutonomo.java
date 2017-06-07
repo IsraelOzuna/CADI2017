@@ -24,7 +24,7 @@ public class MenuPrincipalUsuarioAutonomo extends javax.swing.JFrame {
         
         this.usuario = usuario;      
         UsuarioAutonomoDAO alumno = new UsuarioAutonomoDAO();
-        this.alumno = alumno.obtenerUsuario(usuario);    
+        this.alumno = alumno.obtenerUsuarioAutonomo(usuario);    
         nombreUsuarioAutonomo.setText(this.alumno.getNombre()+" "+this.alumno.getApellidos());
         
     }

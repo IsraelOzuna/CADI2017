@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *Esta clase se encarga de consultar con la base de datos
@@ -74,8 +76,8 @@ public class UsuarioDAO implements IUsuarioDAO{
                         
                         mensaje = MensajeBandera.USUARIO_INVALIDO;
                     
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
+                } catch (SQLException ex) {                
+                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }finally{
                     
                     datos.cerrarConexion();
@@ -120,11 +122,11 @@ public class UsuarioDAO implements IUsuarioDAO{
 
             }
 
-        } catch (SQLException ex) {
-            
-            ex.printStackTrace();
-            
-        }finally{
+        } 
+        catch (SQLException ex) {            
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }            
+        finally{
             conexionAux.cerrarConexion();
         }
         

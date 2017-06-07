@@ -23,22 +23,24 @@ public class SeccionDAOTest {
     }
 //obtener Secciones correctas de un usuario específico
     @Test
-    public void testObtenerSeccione() {
+    public void testObtenerSeccionesDeAsesor() {
 
         ArrayList<Seccion> misSecciones = new ArrayList();
-        misSecciones = seccion.obtenerSeccione("00007");
+        misSecciones = seccion.obtenerSeccionesDeAsesor("00007");
 
         String nrcObtenido = misSecciones.get(1).getNrc();
         String nrcEsperado = "00025";
         assertEquals(nrcObtenido, nrcEsperado);
 
     }
+    
+ 
     //Si el asesor no tiene secciones sus secciones deben ser 0
      @Test
     public void testAsesorSinSecciones() {
 
         ArrayList<Seccion> misSecciones = new ArrayList();
-        misSecciones = seccion.obtenerSeccione("00002");
+        misSecciones = seccion.obtenerSeccionesDeAsesor("00002");
 
         int tamñoArrayObtenido = misSecciones.size();
         int tamañoArrayEsperado = 0;
@@ -72,10 +74,10 @@ public class SeccionDAOTest {
     }
 //Encuentra un alumno según un asesor y una palabra tiene un resultado
     @Test
-    public void testBuscarMisAlumnos() {
+    public void testBuscarAlumnosPorAsesor() {
 
         List<UsuarioAutonomo> alumnos = new ArrayList();
-        alumnos = seccion.buscarMisAlumnos(asesor, "di");
+        alumnos = seccion.buscarAlumnosAsesor(asesor, "di");
 
         String nombreAlumnoObtenido = alumnos.get(0).getNombre();
         String nombreAlumnoEsperado = "Diego";
@@ -87,7 +89,7 @@ public class SeccionDAOTest {
     public void testbuscarMisAlumnosSinCoicidencias() {
 
         List<UsuarioAutonomo> alumnos = new ArrayList();
-        alumnos = seccion.buscarMisAlumnos(asesor, "dd");
+        alumnos = seccion.buscarAlumnosAsesor(asesor, "'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''");
 
         int tamañoArrayObtenido = alumnos.size();
         int tamañoArrayEsperado = 0;

@@ -22,12 +22,12 @@ public class UsuarioAutonomoDAOTest {
     }
 
     @Test
-    public void testObtenerUsuario() {                        
+    public void testObtenerUsuarioAutonomo() {                        
         UsuarioAutonomoDAO datosUsuarioAutonomo = new UsuarioAutonomoDAO();
         UsuarioAutonomo usuarioAutonomoEsperado = new UsuarioAutonomo();
         UsuarioAutonomo usuarioAutonomoObtenido = new UsuarioAutonomo();
         usuarioAutonomoEsperado.setMatricula("s15011651");
-        usuarioAutonomoObtenido = datosUsuarioAutonomo.obtenerUsuario("isrozuna");
+        usuarioAutonomoObtenido = datosUsuarioAutonomo.obtenerUsuarioAutonomo("isrozuna");
         
         assertEquals(usuarioAutonomoEsperado.getMatricula(),usuarioAutonomoObtenido.getMatricula());
     }

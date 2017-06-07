@@ -240,8 +240,8 @@ public class IniciarSesion extends javax.swing.JFrame {
     private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
         MensajeBandera mensaje = null;
         UsuarioDAO usuario = new UsuarioDAO();
-        
-        if(campoContrasena.getText().isEmpty() || campoUsuario.getText().isEmpty())
+        String []campoVacio = campoUsuario.getText().split(" ");
+        if(campoContrasena.getText().isEmpty() || campoUsuario.getText().isEmpty() || campoVacio.length == 0)
             JOptionPane.showMessageDialog(null, "Algún campo está vacio");
         else{
             //En caso de no haber un campo vacío se verificará que tipo de usuario es

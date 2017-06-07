@@ -55,6 +55,7 @@ public class CuadroAlumno extends javax.swing.JPanel {
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 2, true));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        compoDatosAlumno.setEditable(false);
         compoDatosAlumno.setColumns(20);
         compoDatosAlumno.setRows(5);
         add(compoDatosAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 179, 138));
