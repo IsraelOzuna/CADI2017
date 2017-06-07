@@ -57,7 +57,8 @@ public class ReservacionDAO implements IReservacionDAO {
                 }
 
             } catch (SQLException ex) {
-                //bitacora
+                
+                ex.printStackTrace();
                 
             } finally {
                 conexion.cerrarConexion();
@@ -89,7 +90,8 @@ public class ReservacionDAO implements IReservacionDAO {
             }
 
         } catch (SQLException ex) {
-
+            
+            ex.printStackTrace();
         } finally {
             conexion.cerrarConexion();
         }

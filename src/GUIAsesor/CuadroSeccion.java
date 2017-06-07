@@ -18,6 +18,9 @@ public class CuadroSeccion extends javax.swing.JPanel {
     private JPanel panelAlumnos;
     /**
      * Creates new form CuadroSeccion
+     * @param seccion Es una seccion la cual tiene entre otros datos
+     * una lista de 
+     * @param panelAlumnos es el componente en el cual dibujará los componentes creados
      */
     public CuadroSeccion(Seccion seccion, JPanel panelAlumnos) {
         this.seccion = seccion;
@@ -27,14 +30,10 @@ public class CuadroSeccion extends javax.swing.JPanel {
         nrc.setText("NRC: "+seccion.getNrc());
         
     }
-    public CuadroSeccion(Seccion seccion) {
-        this.seccion = seccion;
-        initComponents();
-        nombreSeccion.setText(seccion.getNombre());
-        nrc.setText("NRC: "+seccion.getNrc());
-        
-    }
-    
+  
+    /**
+     * Este metodo crea los cuadros(paneles) de los alumnos segun el numero de alumnos tenga la sección
+     */
     public void crearCuadrosAlumnos(){
         
         ArrayList <CuadroAlumno> cuadros = new ArrayList();
@@ -50,6 +49,10 @@ public class CuadroSeccion extends javax.swing.JPanel {
        
     }
     
+    /**
+     * Muestra los cuadros previamente creados en el panel que se recibio en el constructor
+     * @param cuadros Es una lista de componente los cuales se colocarán en el panel
+     */
     public void mostrarCuadrosAlumnos(ArrayList<CuadroAlumno> cuadros){
         panelAlumnos.removeAll();
         int x = 10;
@@ -129,6 +132,7 @@ public class CuadroSeccion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        
         crearCuadrosAlumnos();
         
     }//GEN-LAST:event_formMouseClicked

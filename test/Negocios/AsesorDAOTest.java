@@ -9,15 +9,17 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ *Prubas de AsesorDAO 
+ * @author Israel Reyes Ozuna
  * @author Cristhian Ubaldo Promotor
+ * @version 6/06/2017
  */
 public class AsesorDAOTest {
      
     public AsesorDAOTest() {
        
     }
-
+//Prueba que se obtenga el usuario correcto dado un usuario
     @Test
     public void testObtenerAsesor() {
         

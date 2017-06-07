@@ -1,8 +1,10 @@
 package Negocios;
 
 /**
- *
- * @author Ozuna
+ *Almacena los datos de un Usuario Autónomo
+ * @author Israel Reyes Ozuna
+ * @author Cristhian Ubaldo Promotor
+ * @version 4/06/2017
  */
 public class UsuarioAutonomo extends Usuario {
     private String area;

@@ -3,8 +3,10 @@ package Negocios;
 import java.sql.Date;
 
 /**
- *
- * @author Ozuna
+ * Guarda aspectos que comparten todos los usuarios del sistema
+ * @author Israel Reyes Ozuna
+ * @author Cristhian Ubaldo Promotor
+ * @version 4/06/2017
  */
 public class Usuario {
     private String apellidos;

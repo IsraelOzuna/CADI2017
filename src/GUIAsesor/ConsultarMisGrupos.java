@@ -25,8 +25,8 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
     ArrayList<Seccion> seccionesEncontradas;
     
     /**
-     * Creates new form ConsultarMisGrupos
-     * @param asesor
+     * Crea un ventana de ConsultarMisGrupos
+     * @param asesor Son los datos del asesor del cual se consutarán sus grupos.
      */
     public ConsultarMisGrupos(Asesor asesor) {
         this.asesor = asesor;
@@ -43,7 +43,10 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
         crearCuadrosSecciones(seccionesEncontradas);
         
     }
-    
+    /**
+     * Crea los paneles(cuadros) en los que se meterá la infromación de éste
+     * @param misSecciones son las secciones que tiene a cargo el asesor
+     */
     public void crearCuadrosSecciones(ArrayList<Seccion> misSecciones){
         
         ArrayList <CuadroSeccion> cuadros = new ArrayList();
@@ -57,7 +60,11 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
         mostrarCuadrosSeccion(cuadros);
     }
     
-    
+    /**
+     * Realiza la accion de mostrar los paneles de sus secciones previamente creados
+     * @param cuadros Es u lista de cuadros(componente graficos), los cuales se mostrarán 
+     * en el panel designado.
+     */
     public void mostrarCuadrosSeccion(ArrayList<CuadroSeccion> cuadros){
         
         int x = 5;
@@ -79,7 +86,12 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
         repaint();
         
     }
-    
+    /**
+     * En caso de una búsqueda se crean los cuadros(paneles) que reciben información 
+     * de un usuario autónomo y la dibujan en su interior
+     * @param alumnosEncontrados Es un arreglo de usuarios autonomo que fue previamente 
+     * tarido a través de un búsqueda.
+     */
     public void crearCuadrosAlumnos(ArrayList<UsuarioAutonomo> alumnosEncontrados){
         
         ArrayList <CuadroAlumno> cuadros = new ArrayList();
@@ -93,7 +105,11 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
         mostrarCuadrosAlumno(cuadros);
     }
     
-    
+    /**
+     * Realiza la accion de mostrar los paneles de los alumnos encontrados previamente creados
+     * @param cuadros Es una lista de componentes graficos los cuales se colcarán en el panel
+     * designado.
+     */
     public void mostrarCuadrosAlumno(ArrayList<CuadroAlumno> cuadros){
         
         int x = 10;
@@ -233,7 +249,7 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
     }//GEN-LAST:event_botonRegresarActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        
+       //Regresa al estado antes de la búsquda
        panelCursos.removeAll();
        panelAlumnos.removeAll();
        crearCuadrosSecciones(seccionesEncontradas);
@@ -249,9 +265,11 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
         
         if(campoBusqueda.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "No hay nada para buscar");
-        }else{
             
+            JOptionPane.showMessageDialog(null, "No hay nada para buscar");
+            
+        }else{
+            //compueba que exista algo que buscar y si lo hay trata de realizar una búsqueda
             SeccionDAO busqueda = new SeccionDAO();
             panelCursos.removeAll();
             panelAlumnos.removeAll();

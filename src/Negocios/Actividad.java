@@ -1,8 +1,10 @@
 package Negocios;
 
 /**
- *
- * @author Ozuna
+ *Contiene informacion sobre una actividad
+ * @author Israel Reyes Ozuna
+ * @author Cristhian Ubaldo Promotor
+ * @version 4/06/2017
  */
 public class Actividad {
     

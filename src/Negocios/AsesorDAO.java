@@ -11,10 +11,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
+ * 
+ * @author Israel Reyes Ozuna
  * @author Cristhian Ubaldo Promotor
+ * @version 5/06/2017
  */
 public class AsesorDAO implements IAsesorDAO{
+    
+    /**
+     * Obtiene la iformación de un asesor según el usuario especificado
+     * @param usuario Es el usuario con el cual inicio sesión
+     * @return Retorna todos los datos del asesor 
+     */
     @Override
     public Asesor obtenerAsesor(String usuario){
         
@@ -47,7 +55,7 @@ public class AsesorDAO implements IAsesorDAO{
                    
             }
         }catch(SQLException ex){
-            
+            ex.printStackTrace();
         }finally{
             conexion.cerrarConexion();
         }

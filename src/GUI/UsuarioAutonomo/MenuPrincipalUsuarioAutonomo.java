@@ -5,14 +5,16 @@ import Negocios.UsuarioAutonomo;
 import Negocios.UsuarioAutonomoDAO;
 
 /**
- *
- * @author Ozuna
+ *Interfaz gráfica del menú en el cual el alumno podrá realizar las actividades
+ * que puede realizar
+ * @author Israel Reyes Ozuna
+ * @author Cristhian Ubaldo Promotor
  */
 public class MenuPrincipalUsuarioAutonomo extends javax.swing.JFrame {
     private String usuario;
     private UsuarioAutonomo alumno;
     /**
-     * Creates new form MenuPrincipal
+     * Crea un ventana MenuPrincipal y obtiene el usuario del cuan trata
      */
     public MenuPrincipalUsuarioAutonomo(String usuario) {  
         initComponents();
@@ -25,6 +27,11 @@ public class MenuPrincipalUsuarioAutonomo extends javax.swing.JFrame {
         nombreUsuarioAutonomo.setText(this.alumno.getNombre()+" "+this.alumno.getApellidos());
         
     }
+    /**
+     * Usado cuando ya se tiene un usuario
+     * evitando el consultarlo de nuevo
+     * @param usuario el usuario autónomo elcual ya no se tiene que consultar
+     */
     public MenuPrincipalUsuarioAutonomo(UsuarioAutonomo usuario){
         
         initComponents();
@@ -222,7 +229,7 @@ public class MenuPrincipalUsuarioAutonomo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonReservarActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReservarActividadActionPerformed
-        ReservarActividad reservarActividad = new ReservarActividad(alumno);
+        new ReservarActividad(alumno);
         dispose();
     }//GEN-LAST:event_botonReservarActividadActionPerformed
 
@@ -231,7 +238,7 @@ public class MenuPrincipalUsuarioAutonomo extends javax.swing.JFrame {
     }//GEN-LAST:event_botonVerAvisosActionPerformed
 
     private void botonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesionActionPerformed
-        IniciarSesion iniciarSesion = new IniciarSesion ();
+        new IniciarSesion ();
         dispose();
     }//GEN-LAST:event_botonCerrarSesionActionPerformed
 

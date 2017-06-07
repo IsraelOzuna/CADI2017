@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author Cristhian Ubaldo Promotor
+ *Define los métodos que utilizrá la clase SeccionDAO
+ * @author Israel Reyes Ozuna
+ * @author Cristhian Ubaldo Promotr
+ * @version 6/06/2017
  */
 public interface ISeccionDAO {
     

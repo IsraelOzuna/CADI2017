@@ -20,7 +20,8 @@ public class MenuPrincipalAsesor extends javax.swing.JFrame {
     private Asesor asesor;
     
     /**
-     * Creates new form MenuPrincipalAsesor
+     * Crea una ventana MenuPrincipalAsesor
+     * @param usuario es un usuario de cual traerá su información
      */
     public MenuPrincipalAsesor(String usuario) {
         
@@ -38,7 +39,11 @@ public class MenuPrincipalAsesor extends javax.swing.JFrame {
         correoAsesor.setText("Correo: " + this.asesor.getCorreo());
                 
     }
-    
+    /**
+     * Crea una ventana MenuPrincipalAsesor
+     * @param asesor es la información del asesor.
+     * ya no necesita volver aconsultarla
+     */
     public MenuPrincipalAsesor(Asesor asesor) {
         
         initComponents();
@@ -74,11 +79,13 @@ public class MenuPrincipalAsesor extends javax.swing.JFrame {
         parteBlancaMisSecciones = new javax.swing.JLabel();
         misSecciones = new javax.swing.JLabel();
         panelAvisos = new javax.swing.JPanel();
+        descripcionAvisos = new javax.swing.JLabel();
         parteBlancaAvisos = new javax.swing.JLabel();
         avisos = new javax.swing.JLabel();
         panelCalendario = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        descripcionCalendario = new javax.swing.JLabel();
+        parteBlancaCalendario = new javax.swing.JLabel();
+        calendario = new javax.swing.JLabel();
         botonCerrarSesion = new javax.swing.JButton();
         fondoMenu = new javax.swing.JLabel();
 
@@ -142,6 +149,10 @@ public class MenuPrincipalAsesor extends javax.swing.JFrame {
         panelAvisos.setBackground(new java.awt.Color(0, 153, 153));
         panelAvisos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        descripcionAvisos.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 14)); // NOI18N
+        descripcionAvisos.setText("El aluno podrá ver los avisos que el coordinador cree");
+        panelAvisos.add(descripcionAvisos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, -1));
+
         parteBlancaAvisos.setBackground(new java.awt.Color(255, 255, 255));
         parteBlancaAvisos.setOpaque(true);
         panelAvisos.add(parteBlancaAvisos, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 710, 60));
@@ -156,14 +167,18 @@ public class MenuPrincipalAsesor extends javax.swing.JFrame {
         panelCalendario.setBackground(new java.awt.Color(0, 153, 51));
         panelCalendario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel9.setOpaque(true);
-        panelCalendario.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 710, 60));
+        descripcionCalendario.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 14)); // NOI18N
+        descripcionCalendario.setText("Aquí podrás ver las actividades que se podriás reservar en un futuro");
+        panelCalendario.add(descripcionCalendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, -1));
 
-        jLabel10.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Calendario ");
-        panelCalendario.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 150, 60));
+        parteBlancaCalendario.setBackground(new java.awt.Color(255, 255, 255));
+        parteBlancaCalendario.setOpaque(true);
+        panelCalendario.add(parteBlancaCalendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 710, 60));
+
+        calendario.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 24)); // NOI18N
+        calendario.setForeground(new java.awt.Color(255, 255, 255));
+        calendario.setText("Calendario ");
+        panelCalendario.add(calendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 150, 60));
 
         getContentPane().add(panelCalendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 890, 80));
 
@@ -174,7 +189,6 @@ public class MenuPrincipalAsesor extends javax.swing.JFrame {
         botonCerrarSesion.setBorderPainted(false);
         botonCerrarSesion.setContentAreaFilled(false);
         botonCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonCerrarSesion.setOpaque(false);
         botonCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonCerrarSesionActionPerformed(evt);
@@ -198,7 +212,12 @@ public class MenuPrincipalAsesor extends javax.swing.JFrame {
         IniciarSesion inicio = new IniciarSesion();
         dispose();
     }//GEN-LAST:event_botonCerrarSesionActionPerformed
-
+/**
+ * Coloca una imagen en una etiqueta
+ * @param urlImagen Es una dirección dentor del proyecto la cual deberá ser una imagen.
+ * @param etiqueta es la etiqueta de la que se tomarán ss medidas.
+ * @return regresa un icono que podremos asignar a las etiquetas.
+ */
     public ImageIcon colocarImagenesEnEtiquetas(String urlImagen, JLabel etiqueta){
         ImageIcon imagen = new ImageIcon(getClass().getResource(urlImagen));
         ImageIcon icono = new ImageIcon(imagen.getImage().getScaledInstance(etiqueta.getWidth(),etiqueta.getHeight(),Image.SCALE_DEFAULT));
@@ -209,12 +228,13 @@ public class MenuPrincipalAsesor extends javax.swing.JFrame {
     private javax.swing.JLabel apellidosAsesor;
     private javax.swing.JLabel avisos;
     private javax.swing.JButton botonCerrarSesion;
+    private javax.swing.JLabel calendario;
     private javax.swing.JLabel correoAsesor;
+    private javax.swing.JLabel descripcionAvisos;
+    private javax.swing.JLabel descripcionCalendario;
     private javax.swing.JLabel descripcionMisSecciones;
     private javax.swing.JLabel descripcionMisSecciones2;
     private javax.swing.JLabel fondoMenu;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel logoUV;
     private javax.swing.JLabel mensajeBienvenida;
     private javax.swing.JLabel misSecciones;
@@ -223,6 +243,7 @@ public class MenuPrincipalAsesor extends javax.swing.JFrame {
     private javax.swing.JPanel panelCalendario;
     private javax.swing.JPanel panelMisSecciones;
     private javax.swing.JLabel parteBlancaAvisos;
+    private javax.swing.JLabel parteBlancaCalendario;
     private javax.swing.JLabel parteBlancaMisSecciones;
     // End of variables declaration//GEN-END:variables
 }

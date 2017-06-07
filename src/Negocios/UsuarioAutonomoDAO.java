@@ -6,11 +6,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
- * @author Ozuna
+ *Realiza conexiones con la base de datos
+ * @author Israel Reyes Ozuna
+ * @author Cristhian Ubaldo Promotor
+ * @version 4/06/2017
  */
 public class UsuarioAutonomoDAO implements IUsuarioAutonomoDAO {
-
+    
+    /**
+     * A través de un usuario busca un usurio autonomo 
+     * @param usuario Es el usuario a buscar en la base de datos
+     * @return Regresa la infromacíon del usuario autónomo en un objeto del mismo tipo
+     */
     @Override
     public UsuarioAutonomo obtenerUsuario(String usuario) {
         
@@ -47,6 +54,7 @@ public class UsuarioAutonomoDAO implements IUsuarioAutonomoDAO {
             }
         }catch(SQLException ex){
             
+            ex.printStackTrace();
         }finally{
             conexion.cerrarConexion();
         }

@@ -10,7 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Guarda la informacion de las una seccion
+ * así como los alumnos que se encuentran
+ * en dicha sección.
+ * @author Israel Reyes Ozuna
  * @author Cristhian Ubaldo Promotor
  */
 public class Seccion {

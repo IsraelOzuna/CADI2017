@@ -5,8 +5,10 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
- * @author Ozuna
+ *Prubas de conexión a base de datos
+ * @author Israel Reyes Ozuna
+ * @author Cristhian Ubaldo Promotor
+ * @version 5/06/2017
  */
 public class ConexionTest {
     Conexion conexion;

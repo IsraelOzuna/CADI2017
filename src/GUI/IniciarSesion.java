@@ -248,6 +248,9 @@ public class IniciarSesion extends javax.swing.JFrame {
         if(campoContrasena.getText().isEmpty() || campoUsuario.getText().isEmpty())
             JOptionPane.showMessageDialog(null, "Algún campo está vacio");
         else{
+            //En caso de no haber un campo vacío se verificará que tipo de usuario es
+            //instanciando las partes a las que pueden acceder segun su tipo de usuario
+            
             switch(usuario.iniciarSesion(campoUsuario.getText(), campoContrasena.getText())){
                 case ERROR_CONEXION:
                     JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos");

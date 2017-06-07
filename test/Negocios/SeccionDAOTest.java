@@ -11,7 +11,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ *Pruebas de SeccionDAO
+ * @author Israel Reyes Ozuna
  * @author Cristhian Ubaldo Promotor
  */
 public class SeccionDAOTest {
@@ -24,7 +25,7 @@ public class SeccionDAOTest {
         asesor = new Asesor();
         asesor.setNumeroPersonal("00007");
     }
-
+//obtener Secciones correctas de un usuario específico
     @Test
     public void testObtenerSeccione() {
         
@@ -36,7 +37,7 @@ public class SeccionDAOTest {
         assertEquals(nrcObtenido, nrcEsperado);
         
     }
-    
+    //Si el asesor no tiene secciones sus secciones deben ser 0
      @Test
     public void testAsesorSinSecciones() {
         
@@ -48,7 +49,7 @@ public class SeccionDAOTest {
         assertEquals(tamñoArrayObtenido, tamañoArrayEsperado);
         
     }
-
+//obtiene un alumno especifico según la sección especificada
     @Test
     public void testObtenerAlumnosSeccion() {
         
@@ -61,6 +62,7 @@ public class SeccionDAOTest {
         
     }
     
+ //Si la seccion no tiene alumnos los alumnos de esa sección deben ser 0
     @Test
     public void testObtenerAlumnosSeccionSinAlumnos() {
         
@@ -72,7 +74,7 @@ public class SeccionDAOTest {
         assertEquals(tamñoArrayObtenido, tamañoArrayEsperado);
         
     }
-
+//Encuentra un alumno según un asesor y una palabra tiene un resultado
     @Test
     public void testBuscarMisAlumnos() {
         
@@ -84,7 +86,7 @@ public class SeccionDAOTest {
         assertEquals(nombreAlumnoObtenido, nombreAlumnoEsperado);
         
     }
-    
+ //Si no hay alumnos segun la palabra buscada por el asesor tendra 0 resultados
     @Test
     public void testbuscarMisAlumnosSinCoicidencias() {
         

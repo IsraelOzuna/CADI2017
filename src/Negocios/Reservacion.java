@@ -4,8 +4,10 @@ import java.sql.Date;
 import java.sql.Time;
 
 /**
- *
- * @author Ozuna
+ * Guardo informacion Sobre una reservacion o actividad ofertada
+ * @author Israel Reyes Ozuna
+ * @author Cristhian Ubaldo Promotor
+ * @version 6/06/2017
  */
 public class Reservacion {
     private String idReservacion;

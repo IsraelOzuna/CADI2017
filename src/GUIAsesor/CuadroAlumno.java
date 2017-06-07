@@ -16,7 +16,8 @@ import javax.swing.ImageIcon;
 public class CuadroAlumno extends javax.swing.JPanel {
 
     /**
-     * Creates new form CuadroAlumno
+     * Crea unpanel CuadroAlumno
+     * @param alumno Es la infromacioón de un Usuario Autónomo
      */
     public CuadroAlumno(UsuarioAutonomo alumno) {
         initComponents();
@@ -31,7 +32,11 @@ public class CuadroAlumno extends javax.swing.JPanel {
         
         
     }
-    
+    /**
+     * Ajusta ciertas umagenes según el tamaño del componente.
+     * @param urlImagen Es una dirreccion interna la Proyecto
+     * @return Un icono que nos servira para colocarlo en la etiqueta de ese panel
+     */
     public ImageIcon colocarImagenesEnEtiquetas(String urlImagen){
         ImageIcon imagen = new ImageIcon(getClass().getResource(urlImagen));
         ImageIcon icono = new ImageIcon(imagen.getImage().getScaledInstance(110,120 ,Image.SCALE_DEFAULT));

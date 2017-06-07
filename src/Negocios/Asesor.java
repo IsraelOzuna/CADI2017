@@ -1,8 +1,9 @@
 package Negocios;
 
 /**
- *
- * @author Ozuna
+ *Contiene infromación de un asesor
+ * @author Israel Reyes Ozuna
+ * @author Cristhian Ubaldo Promotor
  */
 public class Asesor extends Usuario{
     private String carreraEgresada;

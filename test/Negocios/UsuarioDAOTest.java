@@ -5,8 +5,10 @@ import static org.junit.Assert.*;
 import Recursos.MensajeBandera;
 
 /**
- *
- * @author Ozuna
+ *Pruebas de la aisgnacion de roles y validación 
+ * @author Israel Reyes Ozuna
+ * @author Cristhian Ubaldo Promotor
+ * @version 6/06/2017
  */
 public class UsuarioDAOTest {
     UsuarioDAO usuarioDAO;

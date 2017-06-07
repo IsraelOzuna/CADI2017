@@ -13,7 +13,12 @@ import java.util.List;
  * @author Cristhian Ubaldo Promotor
  */
 public class SeccionDAO implements ISeccionDAO{
-
+    /**
+     * Este método obtiene las secciones que imparte un asesor
+     * @param numeroPersonalAsesor Es el numero de personal que identifica al asesor
+     * @return Regresa una lista de Secciones en las cuales tambien van los alumnos 
+     * de dichas secciones
+     */
    @Override
     public ArrayList<Seccion> obtenerSeccione(String numeroPersonalAsesor) {
         
@@ -57,6 +62,12 @@ public class SeccionDAO implements ISeccionDAO{
         
     }
     
+    /**
+     * Busca los alumnos que están en cierta seccion
+     * @param nrcCruso Es el identificador de la secciónen la que
+     * buscará a los alumnos
+     * @return Retorna una lista de alumnos de la sección
+     */
     @Override
     public List<UsuarioAutonomo> obtenerAlumnosSeccion(String nrcCruso){
         
@@ -100,6 +111,13 @@ public class SeccionDAO implements ISeccionDAO{
         return usuariosSeccion;
     }
     
+    /**
+     * Método que permite buscar los alumnos que le pertenecen un asesor
+     * @param asesor Es el asesor el cual quiere buscar entre los alumnos 
+     * a los que les da clase
+     * @param palabraClave Es la palabra con la que buscará coincidencias
+     * @return Es un lista de alumnos los cuales tienen en su interior la palabra que busca
+     */
     @Override
     public ArrayList<UsuarioAutonomo> buscarMisAlumnos(Asesor asesor, String palabraClave){
         
