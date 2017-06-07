@@ -33,7 +33,9 @@ public class ReservacionDAO implements IReservacionDAO {
 
         idIdiomas = obtenerIdiomasUsurioAutonomo(alumno);
         conexion.obtenerConexion();
-        String consultaSQL = "SELECT *FROM actividadOfertada, actividad WHERE estado = 'Disponible' "
+        String consultaSQL = "SELECT *FROM actividadOfertada, actividad WHERE NOT EXISTS "
+                + "(SELECT *FROM reservacion WHERE reservacion.idActividadOfertada = actividadOfertada.idActividad)"
+                + " and estado = 'Disponible' "
                 + "and actividadOfertada.idActividad = actividad.idActividad "
                 + " and  idIdioma = ?";
 
