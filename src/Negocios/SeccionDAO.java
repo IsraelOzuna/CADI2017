@@ -99,4 +99,56 @@ public class SeccionDAO implements ISeccionDAO{
         return usuariosSeccion;
     }
     
+    public ArrayList<UsuarioAutonomo> obtenerMisAlumnos(Asesor asesor, String palabraClave){
+        
+        ArrayList<UsuarioAutonomo> misAlumnos = new ArrayList();
+        
+        Conexion conexion = new Conexion();
+        PreparedStatement sentencia = null;
+        ResultSet resultado = null;
+        String consultaSQL = null;
+        
+        consultaSQL = "SELECT usuarioAutonomo.matricula, usuario,  nombreUsuarioAutonomo, apellidosUsuarioAutonomo,"
+                + " correoUsuarioAutonomo, fechaNacimiento, genero, area, carrera, telefono,"
+                + " discapacidad, hablaLenguaIndigena FROM usuarioAutonomo, inscripcion, seccion WHERE "
+                + " usuarioAutonomo.matricula = inscripcion.matricula AND inscripcion.nrc = seccion.nrc "
+                + "AND asesorAsignado = ? AND (usuarioAutonomo.matricula LIKE ? OR nombreUsuarioAutonomo LIKE ? )";
+        
+        try{
+            
+            sentencia = conexion.obtenerConexion().prepareStatement(consultaSQL);           
+            sentencia.setString(1, asesor.getNumeroPersonal());
+            sentencia.setString(2, "%" + palabraClave+"%");
+            sentencia.setString(3, "%" + palabraClave+"%");
+            resultado = sentencia.executeQuery();
+            
+            while(resultado.next()){
+                UsuarioAutonomo alumnoEncontrado = new UsuarioAutonomo();
+                
+                alumnoEncontrado.setMatricula( resultado.getString(1));
+                alumnoEncontrado.setUsuario(resultado.getString(2));
+                alumnoEncontrado.setNombre(resultado.getString(3));
+                alumnoEncontrado.setApellidos(resultado.getString(4));
+                alumnoEncontrado.setCorreo(resultado.getString(5));
+                alumnoEncontrado.setFechaNacimiento(resultado.getDate(6));
+                alumnoEncontrado.setGenero(resultado.getString(7));
+                alumnoEncontrado.setArea(resultado.getString(8));
+                alumnoEncontrado.setCarrera(resultado.getString(9));
+                alumnoEncontrado.setTelefono(resultado.getString(10));
+                alumnoEncontrado.setDiscapacidad(resultado.getString(11));
+                alumnoEncontrado.setLenguaIndigena(resultado.getString(12));
+                
+                misAlumnos.add(alumnoEncontrado);
+            }
+            
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }finally{
+            conexion.cerrarConexion();
+        }
+        
+        return misAlumnos;
+        
+    }
+    
 }

@@ -13,6 +13,9 @@
       </Border>
     </Property>
   </Properties>
+  <AccessibilityProperties>
+    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
+  </AccessibilityProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -30,7 +33,7 @@
     <Property name="useNullLayout" type="boolean" value="false"/>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextArea" name="datosAlumno">
+    <Component class="javax.swing.JTextArea" name="compoDatosAlumno">
       <Properties>
         <Property name="columns" type="int" value="20"/>
         <Property name="rows" type="int" value="5"/>

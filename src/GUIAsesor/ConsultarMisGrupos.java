@@ -8,10 +8,12 @@ package GUIAsesor;
 import Negocios.Asesor;
 import Negocios.Seccion;
 import Negocios.SeccionDAO;
+import Negocios.UsuarioAutonomo;
 import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -20,7 +22,7 @@ import javax.swing.JLabel;
  */
 public class ConsultarMisGrupos extends javax.swing.JFrame {
     private Asesor asesor;
-    ArrayList<Seccion> misSecciones;
+    ArrayList<Seccion> seccionesEncontradas;
     /**
      * Creates new form ConsultarMisGrupos
      */
@@ -34,9 +36,9 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
         ImageIcon imagen = new ImageIcon(getClass().getResource("/Recursos/fondo-menu-pantalla.jpg"));
         ImageIcon icono = new ImageIcon(imagen.getImage().getScaledInstance(fondoConsultarGrupos.getWidth(), fondoConsultarGrupos.getHeight(), Image.SCALE_DEFAULT));
         fondoConsultarGrupos.setIcon(icono);
-        misSecciones = secciones.obtenerSeccione(asesor.getNumeroPersonal());
+        seccionesEncontradas = secciones.obtenerSeccione(asesor.getNumeroPersonal());
         
-        crearCuadrosSecciones(misSecciones);
+        crearCuadrosSecciones(seccionesEncontradas);
         
     }
     
@@ -75,6 +77,50 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
         repaint();
         
     }
+    
+    public void crearCuadrosAlumnos(ArrayList<UsuarioAutonomo> alumnosEncontrados){
+        
+        ArrayList <CuadroAlumno> cuadros = new ArrayList();
+        
+        for(int i = 0; i < alumnosEncontrados.size(); i++){
+            
+            CuadroAlumno cuadro = new CuadroAlumno(alumnosEncontrados.get(i));
+            cuadros.add(cuadro);
+        }
+    
+        mostrarCuadrosAlumno(cuadros);
+    }
+    
+    
+    public void mostrarCuadrosAlumno(ArrayList<CuadroAlumno> cuadros){
+        
+        int x = 10;
+        int y = 10;
+        int contador = 0;
+        CuadroAlumno cuadro;
+        
+        for(int i=0;i<cuadros.size();i++){
+            
+            cuadro = cuadros.get(i);
+            
+            if(contador < 2){
+                cuadro.setBounds(x, y, 360, 170 );
+                panelAlumnos.add(cuadro);
+                x += 330;
+                contador++;
+            }else{
+                y += 158;
+                x = 10;
+                contador = 0;
+                cuadro.setBounds(x, y, 360, 170);
+                panelAlumnos.add(cuadro);
+                x += 215;
+            }
+        }
+        panelAlumnos.repaint();
+        panelAlumnos.revalidate();
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -85,11 +131,11 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        regresar = new javax.swing.JButton();
+        botonRegresar = new javax.swing.JButton();
         campoBusqueda = new javax.swing.JTextField();
-        buscar = new javax.swing.JButton();
+        botonBuscar = new javax.swing.JButton();
         cursos = new javax.swing.JLabel();
-        cancelar = new javax.swing.JButton();
+        botonCancelar = new javax.swing.JButton();
         alumnos = new javax.swing.JLabel();
         indicacionBusqueda = new javax.swing.JLabel();
         panelCursos = new javax.swing.JPanel();
@@ -100,18 +146,18 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
         setTitle("Consultar grupos");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        regresar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 14)); // NOI18N
-        regresar.setForeground(new java.awt.Color(255, 255, 255));
-        regresar.setText("Regresar");
-        regresar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
-        regresar.setContentAreaFilled(false);
-        regresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        regresar.addActionListener(new java.awt.event.ActionListener() {
+        botonRegresar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 14)); // NOI18N
+        botonRegresar.setForeground(new java.awt.Color(255, 255, 255));
+        botonRegresar.setText("Regresar");
+        botonRegresar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        botonRegresar.setContentAreaFilled(false);
+        botonRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                regresarActionPerformed(evt);
+                botonRegresarActionPerformed(evt);
             }
         });
-        getContentPane().add(regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 31, 90, 30));
+        getContentPane().add(botonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 31, 90, 30));
 
         campoBusqueda.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 14)); // NOI18N
         campoBusqueda.setText("Ingrese nombre o matricula");
@@ -120,54 +166,38 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
                 campoBusquedaMouseClicked(evt);
             }
         });
-        campoBusqueda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoBusquedaActionPerformed(evt);
-            }
-        });
-        campoBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                campoBusquedaKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                campoBusquedaKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                campoBusquedaKeyTyped(evt);
-            }
-        });
         getContentPane().add(campoBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 190, 30));
 
-        buscar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 14)); // NOI18N
-        buscar.setForeground(new java.awt.Color(255, 255, 255));
-        buscar.setText("Buscar");
-        buscar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
-        buscar.setContentAreaFilled(false);
-        buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        buscar.addActionListener(new java.awt.event.ActionListener() {
+        botonBuscar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 14)); // NOI18N
+        botonBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        botonBuscar.setText("Buscar");
+        botonBuscar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        botonBuscar.setContentAreaFilled(false);
+        botonBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarActionPerformed(evt);
+                botonBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, 80, 30));
+        getContentPane().add(botonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, 80, 30));
 
         cursos.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
         cursos.setForeground(new java.awt.Color(255, 255, 255));
         cursos.setText("Cursos");
         getContentPane().add(cursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, -1, -1));
 
-        cancelar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 14)); // NOI18N
-        cancelar.setForeground(new java.awt.Color(255, 255, 255));
-        cancelar.setText("Cancelar búsqueda");
-        cancelar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
-        cancelar.setContentAreaFilled(false);
-        cancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        cancelar.addActionListener(new java.awt.event.ActionListener() {
+        botonCancelar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 14)); // NOI18N
+        botonCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        botonCancelar.setText("Cancelar búsqueda");
+        botonCancelar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        botonCancelar.setContentAreaFilled(false);
+        botonCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelarActionPerformed(evt);
+                botonCancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, 160, 30));
+        getContentPane().add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, 160, 30));
 
         alumnos.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
         alumnos.setForeground(new java.awt.Color(255, 255, 255));
@@ -195,61 +225,54 @@ public class ConsultarMisGrupos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
-        MenuPrincipalAsesor menu = new MenuPrincipalAsesor(asesor);
+    private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
+        new MenuPrincipalAsesor(asesor);
         dispose();
-    }//GEN-LAST:event_regresarActionPerformed
+    }//GEN-LAST:event_botonRegresarActionPerformed
 
-    private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         
        panelCursos.removeAll();
        panelAlumnos.removeAll();
-       crearCuadrosSecciones(misSecciones);
+       crearCuadrosSecciones(seccionesEncontradas);
         
-    }//GEN-LAST:event_cancelarActionPerformed
+    }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void campoBusquedaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoBusquedaMouseClicked
-        // TODO add your handling code here:
+        
         campoBusqueda.setText("");
+        
     }//GEN-LAST:event_campoBusquedaMouseClicked
 
-    private void campoBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoBusquedaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoBusquedaActionPerformed
-
-    private void campoBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoBusquedaKeyTyped
-        // TODO add your handling code here:
+    private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
         
-    }//GEN-LAST:event_campoBusquedaKeyTyped
-
-    private void campoBusquedaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoBusquedaKeyPressed
+        if(campoBusqueda.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "No hay nada para buscar");
+        }else{
+            
+            SeccionDAO busqueda = new SeccionDAO();
+            panelCursos.removeAll();
+            panelAlumnos.removeAll();
+            repaint();
+            crearCuadrosAlumnos(busqueda.obtenerMisAlumnos(asesor, campoBusqueda.getText()));
+        }
         
-    }//GEN-LAST:event_campoBusquedaKeyPressed
 
-    private void campoBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoBusquedaKeyReleased
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_campoBusquedaKeyReleased
-
-    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
-       panelCursos.removeAll();
-       panelAlumnos.removeAll();
-       repaint();
-    }//GEN-LAST:event_buscarActionPerformed
+    }//GEN-LAST:event_botonBuscarActionPerformed
 
    
     
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel alumnos;
-    private javax.swing.JButton buscar;
+    private javax.swing.JButton botonBuscar;
+    private javax.swing.JButton botonCancelar;
+    private javax.swing.JButton botonRegresar;
     private javax.swing.JTextField campoBusqueda;
-    private javax.swing.JButton cancelar;
     private javax.swing.JLabel cursos;
     private javax.swing.JLabel fondoConsultarGrupos;
     private javax.swing.JLabel indicacionBusqueda;
     private javax.swing.JPanel panelAlumnos;
     private javax.swing.JPanel panelCursos;
-    private javax.swing.JButton regresar;
     // End of variables declaration//GEN-END:variables
 }

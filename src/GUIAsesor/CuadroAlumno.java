@@ -21,7 +21,7 @@ public class CuadroAlumno extends javax.swing.JPanel {
     public CuadroAlumno(UsuarioAutonomo alumno) {
         initComponents();
         
-        datosAlumno.setText(alumno.getNombre() +"\n"+alumno.getApellidos() +"\n"+alumno.getCorreo() );
+        compoDatosAlumno.setText(alumno.getNombre() +"\n"+alumno.getApellidos() +"\n"+alumno.getCorreo() );
         
         if(alumno.getGenero().equals("Masculino")){
             fotoGenero.setIcon(colocarImagenesEnEtiquetas("/Recursos/iconoHombre.jpg"));
@@ -47,22 +47,24 @@ public class CuadroAlumno extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        datosAlumno = new javax.swing.JTextArea();
+        compoDatosAlumno = new javax.swing.JTextArea();
         fotoGenero = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 2, true));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        datosAlumno.setColumns(20);
-        datosAlumno.setRows(5);
-        add(datosAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 179, 138));
+        compoDatosAlumno.setColumns(20);
+        compoDatosAlumno.setRows(5);
+        add(compoDatosAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 179, 138));
         add(fotoGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 110, 120));
+
+        getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea datosAlumno;
+    private javax.swing.JTextArea compoDatosAlumno;
     private javax.swing.JLabel fotoGenero;
     // End of variables declaration//GEN-END:variables
 }

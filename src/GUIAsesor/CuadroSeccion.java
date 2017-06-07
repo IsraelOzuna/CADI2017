@@ -27,6 +27,13 @@ public class CuadroSeccion extends javax.swing.JPanel {
         nrc.setText("NRC: "+seccion.getNrc());
         
     }
+    public CuadroSeccion(Seccion seccion) {
+        this.seccion = seccion;
+        initComponents();
+        nombreSeccion.setText(seccion.getNombre());
+        nrc.setText("NRC: "+seccion.getNrc());
+        
+    }
     
     public void crearCuadrosAlumnos(){
         
