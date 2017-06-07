@@ -32,12 +32,5 @@ public class ReservacionDAOTest {
         assertEquals(actividadObtenida, actividadEsperada);
     }
 
-    @Test
-    public void testObtenerIdiomasUsurioAutonomo() {
-    }
-
-    @Test
-    public void testReservarActividad() {
-    }
 
 }
