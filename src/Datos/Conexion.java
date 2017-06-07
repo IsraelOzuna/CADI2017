@@ -36,7 +36,7 @@ public class Conexion {
     /**
      * Sirve para obtener el mansaje máspreciso de que 
      * es lo que pasó al realizar la conexión.
-     * @return 
+     * @return un mensaje Bandera que nos especifica que ocurrió con más claridad
      */
     public MensajeBandera getMensaje() {
         return mensaje;
@@ -56,7 +56,7 @@ public class Conexion {
 
         }catch(ClassNotFoundException | InstantiationException | IllegalAccessException driverExcep){
             
-           //Enviara  bitacora            
+           driverExcep.printStackTrace();
         }
         
         try{

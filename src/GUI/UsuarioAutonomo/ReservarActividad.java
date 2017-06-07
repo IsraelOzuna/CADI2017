@@ -227,11 +227,6 @@ public class ReservarActividad extends javax.swing.JFrame {
     /**
      * Verifica que los comboBox no esten vacios para poder reservar una actividad
      * 
-     * @param actividades es el comboBox donde aparecen las actividades
-     * @param fechas es el comboBox donde aparecen las fechas de la actividad
-     * seleccionada
-     * @param horas es el comboBox donde aparecen las horas de la actividad 
-     * seleccionada
      */
     public void verificarCombos() {
         String actividades = comboActividades.getItemAt(comboActividades.getSelectedIndex());

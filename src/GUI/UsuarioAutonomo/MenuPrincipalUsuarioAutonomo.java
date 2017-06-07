@@ -15,6 +15,7 @@ public class MenuPrincipalUsuarioAutonomo extends javax.swing.JFrame {
     private UsuarioAutonomo alumno;
     /**
      * Crea un ventana MenuPrincipal y obtiene el usuario del cuan trata
+     * @param usuario recibira un alumno el cual será el que accedio al sistema
      */
     public MenuPrincipalUsuarioAutonomo(String usuario) {  
         initComponents();
